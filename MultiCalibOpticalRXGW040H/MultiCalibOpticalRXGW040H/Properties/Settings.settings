@@ -1,0 +1,78 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MultiCalibOpticalRXGW040H.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ontType" Type="System.String" Scope="User">
+      <Value Profile="(Default)">GW040H</Value>
+    </Setting>
+    <Setting Name="ontUser" Type="System.String" Scope="User">
+      <Value Profile="(Default)">admin</Value>
+    </Setting>
+    <Setting Name="ontPass" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ttcn@77CN</Value>
+    </Setting>
+    <Setting Name="GPIB1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">GPIB0::1::INSTR</Value>
+    </Setting>
+    <Setting Name="GPIB2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">GPIB0::2::INSTR</Value>
+    </Setting>
+    <Setting Name="GPIB3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">GPIB0::3::INSTR</Value>
+    </Setting>
+    <Setting Name="GPIB4" Type="System.String" Scope="User">
+      <Value Profile="(Default)">GPIB0::4::INSTR</Value>
+    </Setting>
+    <Setting Name="debug1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">COM1</Value>
+    </Setting>
+    <Setting Name="debug2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">COM2</Value>
+    </Setting>
+    <Setting Name="debug3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">COM3</Value>
+    </Setting>
+    <Setting Name="debug4" Type="System.String" Scope="User">
+      <Value Profile="(Default)">COM4</Value>
+    </Setting>
+    <Setting Name="oltPower1" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="oltPower2" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="oltPower3" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="oltPower4" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="bosaType" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Mentech</Value>
+    </Setting>
+    <Setting Name="slopeUp" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.14</Value>
+    </Setting>
+    <Setting Name="slopeDown" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.11</Value>
+    </Setting>
+    <Setting Name="vApd_00" Type="System.String" Scope="User">
+      <Value Profile="(Default)">012E</Value>
+    </Setting>
+    <Setting Name="vApd_40" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0178</Value>
+    </Setting>
+    <Setting Name="vApd_80" Type="System.String" Scope="User">
+      <Value Profile="(Default)">01C1</Value>
+    </Setting>
+    <Setting Name="vApd_C0" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0203</Value>
+    </Setting>
+    <Setting Name="bosaReportFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="bosaSNLength" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">14</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

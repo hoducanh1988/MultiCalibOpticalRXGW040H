@@ -1,0 +1,552 @@
+﻿<Window x:Class="MultiCalibOpticalRXGW040H.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MultiCalibOpticalRXGW040H"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="770" Width="1300" Style="{StaticResource customWindow}" WindowStartupLocation="CenterScreen" Opacity="{Binding Path=OPACITY, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+
+    <Window.Resources>
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabItem}">
+                        <Grid>
+                            <Border  Name="Border" Margin="0,0,-4,0" BorderThickness="1,1,1,1" CornerRadius="2,12,0,0" >
+                                <ContentPresenter x:Name="ContentSite" VerticalAlignment="Center" HorizontalAlignment="Center" ContentSource="Header" Margin="12,2,12,2" RecognizesAccessKey="True"/>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Panel.ZIndex" Value="100"/>
+                                <Setter TargetName="Border" Property="Background" Value="White" />
+                                <Setter TargetName="Border" Property="BorderThickness" Value="1,1,1,0" />
+                            </Trigger>
+                            <!--<Trigger Property="IsSelected" Value="False">
+                                <Setter TargetName="Border" Property="Background" Value="#FFEEEEEE" />
+                            </Trigger>-->
+                            <!--<Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="Orange" />
+                            </Trigger>-->
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    
+    <Border  Background="#B0C4DE" CornerRadius="5" MouseDown="Border_MouseDown" BorderBrush="Black" BorderThickness="1">
+        <Grid Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="55"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="10"/>
+            </Grid.RowDefinitions>
+            
+            <!--App Information-->
+            <Grid Grid.Row="0" Margin="5,0,0,0">
+                <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Label FontSize="12" VerticalAlignment="Center" Foreground="Black" Content=" Phiên bản 1.0.0.1"></Label>
+                    <Label FontSize="12" VerticalAlignment="Center" Foreground="Black" Content=" Ngày tạo 20/06/2018"></Label>
+                    <Label FontSize="12" VerticalAlignment="Center" Foreground="Black" Content=" Bản quyền công ty VNPT Technology 2018"></Label>
+                </WrapPanel>
+                <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Right" >
+                    <Label Padding="9,0,0,0" MouseDown="Label_MouseDown" FontSize="20" Width="30" FontWeight="Bold" Margin="0,-5,5,0"  Foreground="White" Background="Red" ToolTipService.ToolTip="Tắt ứng dụng" Content="X"></Label>
+                </WrapPanel>
+            </Grid>
+            
+            <!--App setting-->
+            <Grid Grid.Row="1" Background="#F3F3F3">
+                <Menu>
+                    <MenuItem Header="File" FontWeight="SemiBold" Height="25">
+                        <MenuItem Header="Open Log Folder" FontWeight="SemiBold"/>
+                        <Separator/>
+                        <MenuItem Header="Exit" FontWeight="SemiBold" Click="MenuItem_Click"/>
+                    </MenuItem>
+                    <MenuItem Header="Setting" FontWeight="SemiBold" Height="25" Click="MenuItem_Click"/>
+                    <MenuItem Header="View" FontWeight="SemiBold" Height="25" Click="MenuItem_Click"/>
+                    <MenuItem Header="About" FontWeight="SemiBold" Height="25" Click="MenuItem_Click" />
+                </Menu>
+            </Grid>
+
+            <!--App title-->
+            <StackPanel Grid.Row="2">
+                <Label FontSize="30" FontWeight="Bold" Foreground="#2e4b4f" VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="PHẦN MỀM CALIBRATION RX QUANG ONT GW040H"/>
+                <Border BorderBrush="#3eb7a1" BorderThickness="5" />
+            </StackPanel>
+
+            <!--App content-->
+            <Grid Grid.Row="3" Margin="0,5,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Border x:Name="border_DUT01" Grid.Column="0" CornerRadius="5" Background="Transparent" BorderBrush="White" BorderThickness="1,5,1,3">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="140"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="100"/>
+                            <RowDefinition Height="100"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0">
+                            <Label HorizontalAlignment="Left" Content="ONT#01" FontSize="30" FontWeight="Bold" Foreground="Black" Opacity="0.7"/>
+                           
+                            <Grid Height="30" Margin="0,5,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Content="MAC:" FontSize="16" FontWeight="SemiBold"/>
+                                <Label Grid.Column="1" FontSize="16" FontWeight="Bold" Content="--"/>
+                            </Grid>
+                            <Grid Height="30" Margin="0,5,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Content="BOSA:" FontSize="16" FontWeight="SemiBold"/>
+                                <Label Grid.Column="1" FontSize="16" FontWeight="Bold" Content="--"/>
+                            </Grid>
+                        </StackPanel>
+
+                        <TabControl Grid.Row="1" Margin="5,0,5,0" TabStripPlacement="Top">
+                            <TabItem>
+                                <TabItem.Header>
+                                    <TextBlock FontSize="13" Height="22" Text="ITEMS" FontWeight="SemiBold"/>
+                                </TabItem.Header>
+
+                                <ScrollViewer>
+                                    <StackPanel Margin="10,10,0,0">
+                                        <!--Set V_Apd + Slope-->
+                                        <WrapPanel>
+                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
+                                            <Label FontSize="16" FontWeight="Bold" Content="Set V_apd + Slope" Foreground="#2e4b4f"/>
+                                        </WrapPanel>
+                                            
+                                        <!--Overload + Sensitivity-->
+                                        <WrapPanel>
+                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
+                                            <Label FontSize="16" FontWeight="Bold" Content="Overload + Sensitivity" Foreground="#2e4b4f"/>
+                                        </WrapPanel>
+                                        
+                                        <!--RX DDMI Calibration-->
+                                        <WrapPanel>
+                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
+                                            <Label FontSize="16" FontWeight="Bold" Content="RX DDMI Calibration" Foreground="#2e4b4f"/>
+                                        </WrapPanel>
+                                        
+                                        <!--RX DDMI Curve-->
+                                        <WrapPanel>
+                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
+                                            <Label FontSize="16" FontWeight="Bold" Content="RX DDMI Curve" Foreground="#2e4b4f"/>
+                                        </WrapPanel>
+                                        
+                                        <!--LOS Calibration-->
+                                        <WrapPanel>
+                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
+                                            <Label FontSize="16" FontWeight="Bold" Content="LOS Calibration" Foreground="#2e4b4f"/>
+                                        </WrapPanel>
+                                        
+                                        <!--LOS Check-->
+                                        <WrapPanel>
+                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
+                                            <Label FontSize="16" FontWeight="Bold" Content="LOS Check" Foreground="#2e4b4f"/>
+                                        </WrapPanel>
+                                        
+                                        <!--Write Flash-->
+                                        <WrapPanel>
+                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
+                                            <Label FontSize="16" FontWeight="Bold" Content="Write Flash" Foreground="#2e4b4f"/>
+                                        </WrapPanel>
+                                        
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </TabItem>
+                            
+                            <TabItem>
+                                <TabItem.Header>
+                                    <TextBlock FontSize="13" Height="22" Text="LOG" FontWeight="SemiBold"/>
+                                </TabItem.Header>
+
+                                <ScrollViewer x:Name="_dut1scrollViewer">
+                                    <RichTextBox  Background="Transparent" BorderThickness="0" IsReadOnly="True" Block.LineHeight="1" Padding="0,5,0,0">
+                                        <FlowDocument PageHeight="180">
+                                            <Paragraph>
+                                                <Run Foreground="#050928" FontWeight="Normal" Text="{Binding Path=SYSTEMLOG, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                                            </Paragraph>
+                                        </FlowDocument>
+                                    </RichTextBox>
+                                </ScrollViewer>
+                                
+                            </TabItem>
+                        </TabControl>
+
+                        <StackPanel HorizontalAlignment="Center" Grid.Row="2" Margin="5">
+                            <Label FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" Content="TOTAL"/>
+                            <Label FontSize="50" FontWeight="Bold" Margin="0,-20,0,0" HorizontalAlignment="Center" Content="NONE"/>
+                            <Label FontSize="15" FontWeight="SemiBold" Foreground="Red" Margin="0,-20,0,0" HorizontalAlignment="Center" Content="--"/>
+                        </StackPanel>
+
+                        <Button x:Name="btnStart1" Click="Button_Click" Grid.Row="3" Margin="5" Content="START" FontSize="40" Background="#E1E1E1"/>
+
+                    </Grid>
+                </Border>
+
+
+                <Border x:Name="border_DUT02" Grid.Column="2" CornerRadius="5" Background="Transparent" BorderBrush="White" BorderThickness="1,5,1,3">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="140"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="100"/>
+                            <RowDefinition Height="100"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0">
+                            <Label HorizontalAlignment="Left" Content="ONT#02" FontSize="30" FontWeight="Bold" Foreground="Black" Opacity="0.7"/>
+
+                            <Grid Height="30" Margin="0,5,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Content="MAC:" FontSize="16" FontWeight="SemiBold"/>
+                                <Label Grid.Column="1" FontSize="16" FontWeight="Bold" Content="--"/>
+                            </Grid>
+                            <Grid Height="30" Margin="0,5,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Content="BOSA:" FontSize="16" FontWeight="SemiBold"/>
+                                <Label Grid.Column="1" FontSize="16" FontWeight="Bold" Content="--"/>
+                            </Grid>
+                        </StackPanel>
+
+                        <TabControl Grid.Row="1" Margin="5,0,5,0" TabStripPlacement="Top">
+                            <TabItem>
+                                <TabItem.Header>
+                                    <TextBlock FontSize="13" Height="22" Text="ITEMS" FontWeight="SemiBold"/>
+                                </TabItem.Header>
+
+                                <ScrollViewer>
+                                    <StackPanel Margin="10,10,0,0">
+                                        <!--Set V_Apd + Slope-->
+                                        <WrapPanel>
+                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
+                                            <Label FontSize="16" FontWeight="Bold" Content="Set V_apd + Slope" Foreground="#2e4b4f"/>
+                                        </WrapPanel>
+
+                                        <!--Overload + Sensitivity-->
+                                        <WrapPanel>
+                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
+                                            <Label FontSize="16" FontWeight="Bold" Content="Overload + Sensitivity" Foreground="#2e4b4f"/>
+                                        </WrapPanel>
+
+                                        <!--RX DDMI Calibration-->
+                                        <WrapPanel>
+                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
+                                            <Label FontSize="16" FontWeight="Bold" Content="RX DDMI Calibration" Foreground="#2e4b4f"/>
+                                        </WrapPanel>
+
+                                        <!--RX DDMI Curve-->
+                                        <WrapPanel>
+                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
+                                            <Label FontSize="16" FontWeight="Bold" Content="RX DDMI Curve" Foreground="#2e4b4f"/>
+                                        </WrapPanel>
+
+                                        <!--LOS Calibration-->
+                                        <WrapPanel>
+                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
+                                            <Label FontSize="16" FontWeight="Bold" Content="LOS Calibration" Foreground="#2e4b4f"/>
+                                        </WrapPanel>
+
+                                        <!--LOS Check-->
+                                        <WrapPanel>
+                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
+                                            <Label FontSize="16" FontWeight="Bold" Content="LOS Check" Foreground="#2e4b4f"/>
+                                        </WrapPanel>
+
+                                        <!--Write Flash-->
+                                        <WrapPanel>
+                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
+                                            <Label FontSize="16" FontWeight="Bold" Content="Write Flash" Foreground="#2e4b4f"/>
+                                        </WrapPanel>
+
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </TabItem>
+
+                            <TabItem>
+                                <TabItem.Header>
+                                    <TextBlock FontSize="13" Height="22" Text="LOG" FontWeight="SemiBold"/>
+                                </TabItem.Header>
+
+                                <ScrollViewer x:Name="_dut2scrollViewer">
+                                    <RichTextBox  Background="Transparent" BorderThickness="0" IsReadOnly="True" Block.LineHeight="1" Padding="0,5,0,0">
+                                        <FlowDocument PageHeight="180">
+                                            <Paragraph>
+                                                <Run Foreground="#050928" FontWeight="Normal" Text="{Binding Path=SYSTEMLOG, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                                            </Paragraph>
+                                        </FlowDocument>
+                                    </RichTextBox>
+                                </ScrollViewer>
+
+                            </TabItem>
+                        </TabControl>
+
+                        <StackPanel HorizontalAlignment="Center" Grid.Row="2" Margin="5">
+                            <Label FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" Content="TOTAL"/>
+                            <Label FontSize="50" FontWeight="Bold" Margin="0,-20,0,0" HorizontalAlignment="Center" Content="NONE"/>
+                            <Label FontSize="15" FontWeight="SemiBold" Foreground="Red" Margin="0,-20,0,0" HorizontalAlignment="Center" Content="--"/>
+                        </StackPanel>
+
+                        <Button x:Name="btnStart2" Click="Button_Click" Grid.Row="3" Margin="5" Content="START" FontSize="40" Background="#E1E1E1"/>
+
+                    </Grid>
+                </Border>
+
+                <Border x:Name="border_DUT03" Grid.Column="4" CornerRadius="5" Background="Transparent" BorderBrush="White" BorderThickness="1,5,1,3">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="140"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="100"/>
+                            <RowDefinition Height="100"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0">
+                            <Label HorizontalAlignment="Left" Content="ONT#03" FontSize="30" FontWeight="Bold" Foreground="Black" Opacity="0.7"/>
+
+                            <Grid Height="30" Margin="0,5,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Content="MAC:" FontSize="16" FontWeight="SemiBold"/>
+                                <Label Grid.Column="1" FontSize="16" FontWeight="Bold" Content="--"/>
+                            </Grid>
+                            <Grid Height="30" Margin="0,5,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Content="BOSA:" FontSize="16" FontWeight="SemiBold"/>
+                                <Label Grid.Column="1" FontSize="16" FontWeight="Bold" Content="--"/>
+                            </Grid>
+                        </StackPanel>
+
+                        <TabControl Grid.Row="1" Margin="5,0,5,0" TabStripPlacement="Top">
+                            <TabItem>
+                                <TabItem.Header>
+                                    <TextBlock FontSize="13" Height="22" Text="ITEMS" FontWeight="SemiBold"/>
+                                </TabItem.Header>
+
+                                <ScrollViewer>
+                                    <StackPanel Margin="10,10,0,0">
+                                        <!--Set V_Apd + Slope-->
+                                        <WrapPanel>
+                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
+                                            <Label FontSize="16" FontWeight="Bold" Content="Set V_apd + Slope" Foreground="#2e4b4f"/>
+                                        </WrapPanel>
+
+                                        <!--Overload + Sensitivity-->
+                                        <WrapPanel>
+                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
+                                            <Label FontSize="16" FontWeight="Bold" Content="Overload + Sensitivity" Foreground="#2e4b4f"/>
+                                        </WrapPanel>
+
+                                        <!--RX DDMI Calibration-->
+                                        <WrapPanel>
+                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
+                                            <Label FontSize="16" FontWeight="Bold" Content="RX DDMI Calibration" Foreground="#2e4b4f"/>
+                                        </WrapPanel>
+
+                                        <!--RX DDMI Curve-->
+                                        <WrapPanel>
+                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
+                                            <Label FontSize="16" FontWeight="Bold" Content="RX DDMI Curve" Foreground="#2e4b4f"/>
+                                        </WrapPanel>
+
+                                        <!--LOS Calibration-->
+                                        <WrapPanel>
+                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
+                                            <Label FontSize="16" FontWeight="Bold" Content="LOS Calibration" Foreground="#2e4b4f"/>
+                                        </WrapPanel>
+
+                                        <!--LOS Check-->
+                                        <WrapPanel>
+                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
+                                            <Label FontSize="16" FontWeight="Bold" Content="LOS Check" Foreground="#2e4b4f"/>
+                                        </WrapPanel>
+
+                                        <!--Write Flash-->
+                                        <WrapPanel>
+                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
+                                            <Label FontSize="16" FontWeight="Bold" Content="Write Flash" Foreground="#2e4b4f"/>
+                                        </WrapPanel>
+
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </TabItem>
+
+                            <TabItem>
+                                <TabItem.Header>
+                                    <TextBlock FontSize="13" Height="22" Text="LOG" FontWeight="SemiBold"/>
+                                </TabItem.Header>
+
+                                <ScrollViewer x:Name="_dut3scrollViewer">
+                                    <RichTextBox  Background="Transparent" BorderThickness="0" IsReadOnly="True" Block.LineHeight="1" Padding="0,5,0,0">
+                                        <FlowDocument PageHeight="180">
+                                            <Paragraph>
+                                                <Run Foreground="#050928" FontWeight="Normal" Text="{Binding Path=SYSTEMLOG, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                                            </Paragraph>
+                                        </FlowDocument>
+                                    </RichTextBox>
+                                </ScrollViewer>
+
+                            </TabItem>
+                        </TabControl>
+
+                        <StackPanel HorizontalAlignment="Center" Grid.Row="2" Margin="5">
+                            <Label FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" Content="TOTAL"/>
+                            <Label FontSize="50" FontWeight="Bold" Margin="0,-20,0,0" HorizontalAlignment="Center" Content="NONE"/>
+                            <Label FontSize="15" FontWeight="SemiBold" Foreground="Red" Margin="0,-20,0,0" HorizontalAlignment="Center" Content="--"/>
+                        </StackPanel>
+
+                        <Button x:Name="btnStart3" Click="Button_Click" Grid.Row="3" Margin="5" Content="START" FontSize="40" Background="#E1E1E1"/>
+
+                    </Grid>
+                </Border>
+
+                <Border x:Name="border_DUT04" Grid.Column="6" CornerRadius="5" Background="Transparent" BorderBrush="White" BorderThickness="1,5,1,3">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="140"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="100"/>
+                            <RowDefinition Height="100"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0">
+                            <Label HorizontalAlignment="Left" Content="ONT#04" FontSize="30" FontWeight="Bold" Foreground="Black" Opacity="0.7"/>
+
+                            <Grid Height="30" Margin="0,5,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Content="MAC:" FontSize="16" FontWeight="SemiBold"/>
+                                <Label Grid.Column="1" FontSize="16" FontWeight="Bold" Content="--"/>
+                            </Grid>
+                            <Grid Height="30" Margin="0,5,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Content="BOSA:" FontSize="16" FontWeight="SemiBold"/>
+                                <Label Grid.Column="1" FontSize="16" FontWeight="Bold" Content="--"/>
+                            </Grid>
+                        </StackPanel>
+
+                        <TabControl Grid.Row="1" Margin="5,0,5,0" TabStripPlacement="Top">
+                            <TabItem>
+                                <TabItem.Header>
+                                    <TextBlock FontSize="13" Height="22" Text="ITEMS" FontWeight="SemiBold"/>
+                                </TabItem.Header>
+
+                                <ScrollViewer>
+                                    <StackPanel Margin="10,10,0,0">
+                                        <!--Set V_Apd + Slope-->
+                                        <WrapPanel>
+                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
+                                            <Label FontSize="16" FontWeight="Bold" Content="Set V_apd + Slope" Foreground="#2e4b4f"/>
+                                        </WrapPanel>
+
+                                        <!--Overload + Sensitivity-->
+                                        <WrapPanel>
+                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
+                                            <Label FontSize="16" FontWeight="Bold" Content="Overload + Sensitivity" Foreground="#2e4b4f"/>
+                                        </WrapPanel>
+
+                                        <!--RX DDMI Calibration-->
+                                        <WrapPanel>
+                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
+                                            <Label FontSize="16" FontWeight="Bold" Content="RX DDMI Calibration" Foreground="#2e4b4f"/>
+                                        </WrapPanel>
+
+                                        <!--RX DDMI Curve-->
+                                        <WrapPanel>
+                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
+                                            <Label FontSize="16" FontWeight="Bold" Content="RX DDMI Curve" Foreground="#2e4b4f"/>
+                                        </WrapPanel>
+
+                                        <!--LOS Calibration-->
+                                        <WrapPanel>
+                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
+                                            <Label FontSize="16" FontWeight="Bold" Content="LOS Calibration" Foreground="#2e4b4f"/>
+                                        </WrapPanel>
+
+                                        <!--LOS Check-->
+                                        <WrapPanel>
+                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
+                                            <Label FontSize="16" FontWeight="Bold" Content="LOS Check" Foreground="#2e4b4f"/>
+                                        </WrapPanel>
+
+                                        <!--Write Flash-->
+                                        <WrapPanel>
+                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
+                                            <Label FontSize="16" FontWeight="Bold" Content="Write Flash" Foreground="#2e4b4f"/>
+                                        </WrapPanel>
+
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </TabItem>
+
+                            <TabItem>
+                                <TabItem.Header>
+                                    <TextBlock FontSize="13" Height="22" Text="LOG" FontWeight="SemiBold"/>
+                                </TabItem.Header>
+
+                                <ScrollViewer x:Name="_dut4scrollViewer">
+                                    <RichTextBox  Background="Transparent" BorderThickness="0" IsReadOnly="True" Block.LineHeight="1" Padding="0,5,0,0">
+                                        <FlowDocument PageHeight="180">
+                                            <Paragraph>
+                                                <Run Foreground="#050928" FontWeight="Normal" Text="{Binding Path=SYSTEMLOG, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                                            </Paragraph>
+                                        </FlowDocument>
+                                    </RichTextBox>
+                                </ScrollViewer>
+
+                            </TabItem>
+                        </TabControl>
+
+                        <StackPanel HorizontalAlignment="Center" Grid.Row="2" Margin="5">
+                            <Label FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" Content="TOTAL"/>
+                            <Label FontSize="50" FontWeight="Bold" Margin="0,-20,0,0" HorizontalAlignment="Center" Content="NONE"/>
+                            <Label FontSize="15" FontWeight="SemiBold" Foreground="Red" Margin="0,-20,0,0" HorizontalAlignment="Center" Content="--"/>
+                        </StackPanel>
+
+                        <Button x:Name="btnStart4" Click="Button_Click" Grid.Row="3" Margin="5" Content="START" FontSize="40" Background="#E1E1E1"/>
+
+                    </Grid>
+                </Border>
+                
+            </Grid>
+            
+            <!--App status-->
+            <Grid Grid.Row="4">
+
+            </Grid>
+            
+        </Grid>
+    </Border>
+   
+</Window>

@@ -1,0 +1,204 @@
+﻿<Window x:Class="MultiCalibOpticalRXGW040H.settingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MultiCalibOpticalRXGW040H"
+        mc:Ignorable="d"
+        Title="settingWindow" Height="565" Width="700" WindowStartupLocation="CenterScreen" Topmost="True" Style="{StaticResource customWindow}">
+
+
+    <Border CornerRadius="5" BorderBrush="Black" BorderThickness="1">
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                <GradientStop Color="#f29c32" Offset="0.15" />
+                <GradientStop Color="Orange" Offset="0.55" />
+                <GradientStop Color="#71c6a2" Offset="1" />
+            </LinearGradientBrush> 
+        </Border.Background>
+        <Grid Margin="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+            <!--App Information-->
+            <Grid Grid.Row="0" Margin="1" Background="White">
+                <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Label FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center" Foreground="Black" Content=" Thiết lập cấu hình phần mềm"></Label>
+                </WrapPanel>
+                <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Right" >
+                    <Label Padding="9,0,0,0" MouseDown="Label_MouseDown" FontSize="20" Width="30" FontWeight="Bold" Margin="1"  Foreground="White" Background="Red" ToolTipService.ToolTip="Close form" Content="X"></Label>
+                </WrapPanel>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="235"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="140"/>
+                        <RowDefinition Height="175"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <GroupBox Grid.Row="0" Margin="5,10,0,0" BorderBrush="Black" BorderThickness="0.5" Width="225" VerticalAlignment="Top" HorizontalAlignment="Left">
+                        <GroupBox.Header>
+                            <Label Content="Thiết lập ONT" FontWeight="Bold" FontSize="13"/>
+                        </GroupBox.Header>
+                        <StackPanel>
+                            <Grid Margin="0,5,0,0">
+                                <Label HorizontalAlignment="Left" Content="Ont Type"/>
+                                <ComboBox Text="{Binding Path=ONTTYPE, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" x:Name="cbbOntType" FontWeight="SemiBold" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="150"/>
+                            </Grid>
+                            <Grid Margin="0,5,0,0">
+                                <Label HorizontalAlignment="Left" Content="User"/>
+                                <TextBox Text="{Binding Path=ONTUSER, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontWeight="SemiBold" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="150"/>
+                            </Grid>
+                            <Grid Margin="0,5,0,0">
+                                <Label HorizontalAlignment="Left" Content="Password"/>
+                                <TextBox Text="{Binding Path=ONTPASS, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontWeight="SemiBold" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="150"/>
+                            </Grid>
+                        </StackPanel>
+                    </GroupBox>
+
+                    <GroupBox Grid.Row="1" Margin="5,10,0,0" BorderBrush="Black" BorderThickness="0.5" Width="225" VerticalAlignment="Stretch" HorizontalAlignment="Left">
+                        <GroupBox.Header>
+                            <Label Content="Thiết lập máy đo" FontWeight="Bold" FontSize="13"/>
+                        </GroupBox.Header>
+                        <StackPanel>
+                            <Grid Margin="0,5,0,0">
+                                <Label HorizontalAlignment="Left" Content="GPIB1"/>
+                                <TextBox Text="{Binding Path=GPIB1, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontWeight="SemiBold" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="150"/>
+                            </Grid>
+                            <Grid Margin="0,5,0,0">
+                                <Label HorizontalAlignment="Left" Content="GPIB2"/>
+                                <TextBox Text="{Binding Path=GPIB2, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontWeight="SemiBold" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="150"/>
+                            </Grid>
+                            <Grid Margin="0,5,0,0">
+                                <Label HorizontalAlignment="Left" Content="GPIB3"/>
+                                <TextBox Text="{Binding Path=GPIB3, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontWeight="SemiBold" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="150"/>
+                            </Grid>
+                            <Grid Margin="0,5,0,0">
+                                <Label HorizontalAlignment="Left" Content="GPIB4"/>
+                                <TextBox Text="{Binding Path=GPIB4, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontWeight="SemiBold" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="150"/>
+                            </Grid>
+                        </StackPanel>
+                    </GroupBox>
+
+                    <GroupBox Grid.Row="2" Margin="5,10,0,0" BorderBrush="Black" BorderThickness="0.5" Width="225" VerticalAlignment="Stretch" HorizontalAlignment="Left">
+                        <GroupBox.Header>
+                            <Label Content="Thiết lập USB Debug" FontWeight="Bold" FontSize="13"/>
+                        </GroupBox.Header>
+                        <StackPanel>
+                            <Grid Margin="0,5,0,0">
+                                <Label HorizontalAlignment="Left" Content="Debug1"/>
+                                <ComboBox Text="{Binding Path=DEBUG1, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" x:Name="cbbDebug1" FontWeight="SemiBold" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="150"/>
+                            </Grid>
+                            <Grid Margin="0,5,0,0">
+                                <Label HorizontalAlignment="Left" Content="Debug2"/>
+                                <ComboBox Text="{Binding Path=DEBUG2, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" x:Name="cbbDebug2" FontWeight="SemiBold" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="150"/>
+                            </Grid>
+                            <Grid Margin="0,5,0,0">
+                                <Label HorizontalAlignment="Left" Content="Debug3"/>
+                                <ComboBox Text="{Binding Path=DEBUG3, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" x:Name="cbbDebug3" FontWeight="SemiBold" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="150"/>
+                            </Grid>
+                            <Grid Margin="0,5,0,0">
+                                <Label HorizontalAlignment="Left" Content="Debug4"/>
+                                <ComboBox Text="{Binding Path=DEBUG4, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" x:Name="cbbDebug4" FontWeight="SemiBold" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="150"/>
+                            </Grid>
+                        </StackPanel>
+                    </GroupBox>
+
+                </Grid>
+
+                <Grid Grid.Column="1">
+
+                    <GroupBox Margin="5,10,5,0" BorderBrush="Black" BorderThickness="0.5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <GroupBox.Header>
+                            <Label Content="Thiết lập tham số" FontWeight="Bold" FontSize="13"/>
+                        </GroupBox.Header>
+                        <StackPanel>
+                            <WrapPanel Margin="0,5,0,0">
+                                <Label Content="OLT Power1" Width="90"/>
+                                <TextBox Text="{Binding Path=OLTPOWER1, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontWeight="SemiBold" Width="120" VerticalContentAlignment="Center"/>
+                                <Label Content="dBm"/>
+                            </WrapPanel>
+                            <WrapPanel Margin="0,5,0,0">
+                                <Label Content="OLT Power2" Width="90"/>
+                                <TextBox Text="{Binding Path=OLTPOWER2, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontWeight="SemiBold" Width="120" VerticalContentAlignment="Center"/>
+                                <Label Content="dBm"/>
+                            </WrapPanel>
+                            <WrapPanel Margin="0,5,0,0">
+                                <Label Content="OLT Power3" Width="90"/>
+                                <TextBox Text="{Binding Path=OLTPOWER3, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontWeight="SemiBold" Width="120" VerticalContentAlignment="Center"/>
+                                <Label Content="dBm"/>
+                            </WrapPanel>
+                            <WrapPanel Margin="0,5,0,0">
+                                <Label Content="OLT Power4" Width="90"/>
+                                <TextBox Text="{Binding Path=OLTPOWER4, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontWeight="SemiBold" Width="120" VerticalContentAlignment="Center"/>
+                                <Label Content="dBm"/>
+                            </WrapPanel>
+                            <WrapPanel Margin="0,5,0,0">
+                                <Label Content="Loại BOSA" Width="90"/>
+                                <ComboBox Text="{Binding Path=BOSATYPE, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" x:Name="cbbBosaType" FontWeight="SemiBold" Width="120" VerticalContentAlignment="Center"/>
+                            </WrapPanel>
+
+                            <WrapPanel Margin="0,5,0,0">
+                                <Label Content="Slope Up" Width="90"/>
+                                <TextBox Text="{Binding Path=SLOPEUP, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontWeight="SemiBold" Width="120" VerticalContentAlignment="Center"/>
+                                <Label Content="V/ºC"/>
+                            </WrapPanel>
+                            <WrapPanel Margin="0,5,0,0">
+                                <Label Content="Slope Down" Width="90"/>
+                                <TextBox Text="{Binding Path=SLOPEDOWN, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontWeight="SemiBold" Width="120" VerticalContentAlignment="Center"/>
+                                <Label Content="V/ºC"/>
+                            </WrapPanel>
+                            <WrapPanel Margin="0,5,0,0">
+                                <Label Content="Vapd__00" Width="90"/>
+                                <TextBox Text="{Binding Path=VAPD00, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontWeight="SemiBold" Width="120" VerticalContentAlignment="Center"/>
+                            </WrapPanel>
+                            <WrapPanel Margin="0,5,0,0">
+                                <Label Content="Vapd__40" Width="90"/>
+                                <TextBox Text="{Binding Path=VAPD40, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontWeight="SemiBold" Width="120" VerticalContentAlignment="Center"/>
+                            </WrapPanel>
+                            <WrapPanel Margin="0,5,0,0">
+                                <Label Content="Vapd__80" Width="90"/>
+                                <TextBox Text="{Binding Path=VAPD80, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontWeight="SemiBold" Width="120" VerticalContentAlignment="Center"/>
+                            </WrapPanel>
+                            <WrapPanel Margin="0,5,0,0">
+                                <Label Content="Vapd__C0" Width="90"/>
+                                <TextBox Text="{Binding Path=VAPDC0, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontWeight="SemiBold" Width="120" VerticalContentAlignment="Center"/>
+                            </WrapPanel>
+                            <Grid Margin="0,5,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="90"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="40"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Content="BOSA Report"/>
+                                <TextBox Text="{Binding Path=BOSAREPORTFILE, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Column="1" IsReadOnly ="True"  FontWeight="SemiBold" VerticalContentAlignment="Center" Margin="0,0,5,0"/>
+                                <Button Click="Button_Click"  Grid.Column="2" Content="..."/>
+                            </Grid>
+                        </StackPanel>
+                    </GroupBox>
+                    
+                </Grid>
+               
+            </Grid>
+
+
+            <WrapPanel Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Button Click="Button_Click" Margin="0,0,0,0" Content="OK" Width="100" Height="40" FontSize="22" FontWeight="SemiBold"/>
+                <Button Click="Button_Click" Margin="10,0,0,0" Content="Default" Width="100" Height="40" FontSize="22" FontWeight="SemiBold"/>
+                <Button Click="Button_Click" Margin="10,0,0,0" Content="Cancel" Width="100" Height="40" FontSize="22" FontWeight="SemiBold"/>
+            </WrapPanel>
+
+        </Grid>
+    </Border>
+    
+</Window>
