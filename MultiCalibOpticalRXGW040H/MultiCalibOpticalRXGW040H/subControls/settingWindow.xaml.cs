@@ -44,6 +44,8 @@ namespace MultiCalibOpticalRXGW040H {
                         Properties.Settings.Default.Save();
                         System.Windows.MessageBox.Show("Success.","Save Setting", MessageBoxButton.OK, MessageBoxImage.Information);
                         this.Close();
+                        baseFunction.loadBosaReport();
+                        globalData.mainWindowINFO.WINDOWTITLE = string.Format("PHẦN MỀM CALIBRATION RX QUANG ONT {0}", globalData.initSetting.ONTTYPE);
                         break;
                     }
                 case "Default": {
@@ -53,6 +55,7 @@ namespace MultiCalibOpticalRXGW040H {
                         break;
                     }
                 case "Cancel": {
+                        Properties.Settings.Default.Reload();
                         this.Close();
                         break;
                     }

@@ -158,9 +158,9 @@ namespace MultiCalibOpticalRXGW040H.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double oltPower1 {
+        public string oltPower1 {
             get {
-                return ((double)(this["oltPower1"]));
+                return ((string)(this["oltPower1"]));
             }
             set {
                 this["oltPower1"] = value;
@@ -170,9 +170,9 @@ namespace MultiCalibOpticalRXGW040H.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double oltPower2 {
+        public string oltPower2 {
             get {
-                return ((double)(this["oltPower2"]));
+                return ((string)(this["oltPower2"]));
             }
             set {
                 this["oltPower2"] = value;
@@ -182,9 +182,9 @@ namespace MultiCalibOpticalRXGW040H.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double oltPower3 {
+        public string oltPower3 {
             get {
-                return ((double)(this["oltPower3"]));
+                return ((string)(this["oltPower3"]));
             }
             set {
                 this["oltPower3"] = value;
@@ -194,9 +194,9 @@ namespace MultiCalibOpticalRXGW040H.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double oltPower4 {
+        public string oltPower4 {
             get {
-                return ((double)(this["oltPower4"]));
+                return ((string)(this["oltPower4"]));
             }
             set {
                 this["oltPower4"] = value;
@@ -218,9 +218,9 @@ namespace MultiCalibOpticalRXGW040H.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0.14")]
-        public double slopeUp {
+        public string slopeUp {
             get {
-                return ((double)(this["slopeUp"]));
+                return ((string)(this["slopeUp"]));
             }
             set {
                 this["slopeUp"] = value;
@@ -230,9 +230,9 @@ namespace MultiCalibOpticalRXGW040H.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0.11")]
-        public double slopeDown {
+        public string slopeDown {
             get {
-                return ((double)(this["slopeDown"]));
+                return ((string)(this["slopeDown"]));
             }
             set {
                 this["slopeDown"] = value;

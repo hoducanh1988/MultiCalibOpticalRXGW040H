@@ -51,11 +51,7 @@ namespace MultiCalibOpticalRXGW040H.Function
             }
         }
 
-        /// <summary>
-        /// LOAD DU LIEU BOSA TU FILE VAO LIST
-        /// </summary>
-        /// <returns></returns>
-        public static bool loadBosaReport() {
+        static bool _loadBosaReport() {
             if (globalData.initSetting.BOSAREPORTFILE.Trim().Length == 0) return false;
             //Thread t = new Thread(new ThreadStart(() => {
                 //Load data from excel to dataGrid
@@ -84,6 +80,42 @@ namespace MultiCalibOpticalRXGW040H.Function
         }
 
         /// <summary>
+        /// LOAD DU LIEU BOSA TU FILE VAO LIST
+        /// </summary>
+        /// <returns></returns>
+        public static bool loadBosaReport() {
+            waitWindow w = null;
+            //load bosa report data
+            Thread t = new Thread(new ThreadStart(() => {
+                //Show waiting form
+                App.Current.Dispatcher.Invoke(new Action(() => {
+                    w = new waitWindow();
+                    w.Show();
+                }));
+
+                //load bosa report
+                Thread s = new Thread(new ThreadStart(() => {
+                    if (globalData.initSetting.BOSAREPORTFILE.Length > 0) {
+                        _loadBosaReport();
+                    }
+                }));
+                s.IsBackground = true;
+                s.Start();
+
+                while (s.IsAlive) Thread.Sleep(100);
+
+                App.Current.Dispatcher.Invoke(new Action(() => {
+                    w.Close();
+                }));
+
+            }));
+            t.IsBackground = true;
+            t.Start();
+            return true;
+        }
+
+
+        /// <summary>
         /// LẤY VÀ KHỞI TẠO THÔNG TIN TESTINGINFO THEO TÊN NÚT NHẤN
         /// </summary>
         /// <param name="_btnname"></param>
@@ -95,18 +127,26 @@ namespace MultiCalibOpticalRXGW040H.Function
                 switch (_btnname) {
                     case "btnStart1": {
                             tf = globalData.testingDataDut1;
+                            tf.COMPORT = globalData.initSetting.DEBUG1;
+                            tf.GPIB = globalData.initSetting.GPIB1;
                             break;
                         }
                     case "btnStart2": {
                             tf = globalData.testingDataDut2;
+                            tf.COMPORT = globalData.initSetting.DEBUG2;
+                            tf.GPIB = globalData.initSetting.GPIB2;
                             break;
                         }
                     case "btnStart3": {
                             tf = globalData.testingDataDut3;
+                            tf.COMPORT = globalData.initSetting.DEBUG3;
+                            tf.GPIB = globalData.initSetting.GPIB3;
                             break;
                         }
                     case "btnStart4": {
                             tf = globalData.testingDataDut4;
+                            tf.COMPORT = globalData.initSetting.DEBUG4;
+                            tf.GPIB = globalData.initSetting.GPIB4;
                             break;
                         }
                 }

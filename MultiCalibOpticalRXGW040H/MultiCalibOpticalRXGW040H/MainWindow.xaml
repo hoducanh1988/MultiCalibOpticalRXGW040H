@@ -49,8 +49,8 @@
             <!--App Information-->
             <Grid Grid.Row="0" Margin="5,0,0,0">
                 <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <Label FontSize="12" VerticalAlignment="Center" Foreground="Black" Content=" Phiên bản 1.0.0.1"></Label>
-                    <Label FontSize="12" VerticalAlignment="Center" Foreground="Black" Content=" Ngày tạo 20/06/2018"></Label>
+                    <Label FontSize="12" VerticalAlignment="Center" Foreground="Black" Content=" Phiên bản 1.0.0.2"></Label>
+                    <Label FontSize="12" VerticalAlignment="Center" Foreground="Black" Content=" Ngày tạo 25/06/2018"></Label>
                     <Label FontSize="12" VerticalAlignment="Center" Foreground="Black" Content=" Bản quyền công ty VNPT Technology 2018"></Label>
                 </WrapPanel>
                 <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Right" >
@@ -62,7 +62,8 @@
             <Grid Grid.Row="1" Background="#F3F3F3">
                 <Menu>
                     <MenuItem Header="File" FontWeight="SemiBold" Height="25">
-                        <MenuItem Header="Open Log Folder" FontWeight="SemiBold"/>
+                        <MenuItem Header="Open Folder LogTest" FontWeight="SemiBold" Click="MenuItem_Click"/>
+                        <MenuItem Header="Open Folder LogDetail" FontWeight="SemiBold" Click="MenuItem_Click"/>
                         <Separator/>
                         <MenuItem Header="Exit" FontWeight="SemiBold" Click="MenuItem_Click"/>
                     </MenuItem>
@@ -74,7 +75,7 @@
 
             <!--App title-->
             <StackPanel Grid.Row="2">
-                <Label FontSize="30" FontWeight="Bold" Foreground="#2e4b4f" VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="PHẦN MỀM CALIBRATION RX QUANG ONT GW040H"/>
+                <Label FontSize="30" FontWeight="Bold" Foreground="#2e4b4f" VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="{Binding Path=WINDOWTITLE, UpdateSourceTrigger=PropertyChanged}"/>
                 <Border BorderBrush="#3eb7a1" BorderThickness="5" />
             </StackPanel>
 
@@ -90,10 +91,11 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
+                <!--ONT 1-->
                 <Border x:Name="border_DUT01" Grid.Column="0" CornerRadius="5" Background="Transparent" BorderBrush="White" BorderThickness="1,5,1,3">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="140"/>
+                            <RowDefinition Height="125"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="100"/>
                             <RowDefinition Height="100"/>
@@ -107,7 +109,7 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Column="0" Content="MAC:" FontSize="16" FontWeight="SemiBold"/>
-                                <Label Grid.Column="1" FontSize="16" FontWeight="Bold" Content="--"/>
+                                <Label Grid.Column="1" FontSize="16" FontWeight="Bold" Content="{Binding Path=MACADDRESS, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                             </Grid>
                             <Grid Height="30" Margin="0,5,0,0">
                                 <Grid.ColumnDefinitions>
@@ -115,7 +117,7 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Column="0" Content="BOSA:" FontSize="16" FontWeight="SemiBold"/>
-                                <Label Grid.Column="1" FontSize="16" FontWeight="Bold" Content="--"/>
+                                <Label Grid.Column="1" FontSize="16" FontWeight="Bold" Content="{Binding Path=BOSASERIAL, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                             </Grid>
                         </StackPanel>
 
@@ -129,44 +131,177 @@
                                     <StackPanel Margin="10,10,0,0">
                                         <!--Set V_Apd + Slope-->
                                         <WrapPanel>
-                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
-                                            <Label FontSize="16" FontWeight="Bold" Content="Set V_apd + Slope" Foreground="#2e4b4f"/>
+                                            <Border Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=VAPDRESULT}" Value="NONE">
+                                                                <Setter Property="Background" Value="#E1E1E1"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=VAPDRESULT}" Value="Wait">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundWait}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=VAPDRESULT}" Value="PASS">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundPass}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=VAPDRESULT}" Value="FAIL">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundFail}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                            </Border>
+                                            <TextBlock FontSize="16" FontWeight="Bold" Text="Set V_apd + Slope" Foreground="#2e4b4f"/>
                                         </WrapPanel>
                                             
                                         <!--Overload + Sensitivity-->
-                                        <WrapPanel>
-                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
-                                            <Label FontSize="16" FontWeight="Bold" Content="Overload + Sensitivity" Foreground="#2e4b4f"/>
+                                        <WrapPanel Margin="0,5,0,0">
+                                            <Border Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=OVERLOADRESULT}" Value="NONE">
+                                                                <Setter Property="Background" Value="#E1E1E1"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=OVERLOADRESULT}" Value="Wait">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundWait}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=OVERLOADRESULT}" Value="PASS">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundPass}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=OVERLOADRESULT}" Value="FAIL">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundFail}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                            </Border>
+                                            <TextBlock FontSize="16" FontWeight="Bold" Text="Overload + Sensitivity" Foreground="#2e4b4f"/>
                                         </WrapPanel>
                                         
                                         <!--RX DDMI Calibration-->
-                                        <WrapPanel>
-                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
-                                            <Label FontSize="16" FontWeight="Bold" Content="RX DDMI Calibration" Foreground="#2e4b4f"/>
+                                        <WrapPanel Margin="0,5,0,0">
+                                            <Border Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=CALIBDDMIRESULT}" Value="NONE">
+                                                                <Setter Property="Background" Value="#E1E1E1"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CALIBDDMIRESULT}" Value="Wait">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundWait}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CALIBDDMIRESULT}" Value="PASS">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundPass}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CALIBDDMIRESULT}" Value="FAIL">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundFail}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                            </Border>
+                                            <TextBlock FontSize="16" FontWeight="Bold" Text="RX DDMI Calibration" Foreground="#2e4b4f"/>
                                         </WrapPanel>
                                         
                                         <!--RX DDMI Curve-->
-                                        <WrapPanel>
-                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
-                                            <Label FontSize="16" FontWeight="Bold" Content="RX DDMI Curve" Foreground="#2e4b4f"/>
+                                        <WrapPanel Margin="0,5,0,0">
+                                            <Border Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=CURVEDDMIRESULT}" Value="NONE">
+                                                                <Setter Property="Background" Value="#E1E1E1"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CURVEDDMIRESULT}" Value="Wait">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundWait}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CURVEDDMIRESULT}" Value="PASS">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundPass}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CURVEDDMIRESULT}" Value="FAIL">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundFail}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                            </Border>
+                                            <TextBlock FontSize="16" FontWeight="Bold" Text="RX DDMI Curve" Foreground="#2e4b4f"/>
                                         </WrapPanel>
                                         
                                         <!--LOS Calibration-->
-                                        <WrapPanel>
-                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
-                                            <Label FontSize="16" FontWeight="Bold" Content="LOS Calibration" Foreground="#2e4b4f"/>
+                                        <WrapPanel Margin="0,5,0,0">
+                                            <Border Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=CALIBLOSRESULT}" Value="NONE">
+                                                                <Setter Property="Background" Value="#E1E1E1"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CALIBLOSRESULT}" Value="Wait">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundWait}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CALIBLOSRESULT}" Value="PASS">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundPass}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CALIBLOSRESULT}" Value="FAIL">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundFail}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                            </Border>
+                                            <TextBlock FontSize="16" FontWeight="Bold" Text="LOS Calibration" Foreground="#2e4b4f"/>
                                         </WrapPanel>
                                         
                                         <!--LOS Check-->
-                                        <WrapPanel>
-                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
-                                            <Label FontSize="16" FontWeight="Bold" Content="LOS Check" Foreground="#2e4b4f"/>
+                                        <WrapPanel Margin="0,5,0,0">
+                                            <Border Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=CHECKLOSRESULT}" Value="NONE">
+                                                                <Setter Property="Background" Value="#E1E1E1"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CHECKLOSRESULT}" Value="Wait">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundWait}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CHECKLOSRESULT}" Value="PASS">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundPass}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CHECKLOSRESULT}" Value="FAIL">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundFail}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                            </Border>
+                                            <TextBlock FontSize="16" FontWeight="Bold" Text="LOS Check" Foreground="#2e4b4f"/>
                                         </WrapPanel>
                                         
                                         <!--Write Flash-->
-                                        <WrapPanel>
-                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
-                                            <Label FontSize="16" FontWeight="Bold" Content="Write Flash" Foreground="#2e4b4f"/>
+                                        <WrapPanel Margin="0,5,0,0">
+                                            <Border Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=WRITEFLASHRESULT}" Value="NONE">
+                                                                <Setter Property="Background" Value="#E1E1E1"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=WRITEFLASHRESULT}" Value="Wait">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundWait}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=WRITEFLASHRESULT}" Value="PASS">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundPass}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=WRITEFLASHRESULT}" Value="FAIL">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundFail}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                            </Border>
+                                            <TextBlock FontSize="16" FontWeight="Bold" Text="Write Flash" Foreground="#2e4b4f"/>
                                         </WrapPanel>
                                         
                                     </StackPanel>
@@ -193,20 +328,40 @@
 
                         <StackPanel HorizontalAlignment="Center" Grid.Row="2" Margin="5">
                             <Label FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" Content="TOTAL"/>
-                            <Label FontSize="50" FontWeight="Bold" Margin="0,-20,0,0" HorizontalAlignment="Center" Content="NONE"/>
-                            <Label FontSize="15" FontWeight="SemiBold" Foreground="Red" Margin="0,-20,0,0" HorizontalAlignment="Center" Content="--"/>
+                            <Label FontSize="70" FontWeight="Bold" Margin="0,-25,0,0" HorizontalAlignment="Center" Content="{Binding Path=TOTALRESULT, UpdateSourceTrigger=PropertyChanged}">
+                                <Label.Style>
+                                    <Style TargetType="Label">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=TOTALRESULT}" Value="PASS">
+                                                <Setter Property="Foreground" Value="{StaticResource colorTextOK}"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=TOTALRESULT}" Value="FAIL">
+                                                <Setter Property="Foreground" Value="{StaticResource colorTextNG}"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=TOTALRESULT}" Value="Wait">
+                                                <Setter Property="Foreground" Value="{StaticResource colorTextWait}"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=TOTALRESULT}" Value="NONE">
+                                                <Setter Property="Foreground" Value="{StaticResource colorTextNone}"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Label.Style>
+                            </Label>
+                            <Label FontSize="15" FontWeight="SemiBold" Foreground="Red" Margin="0,-20,0,0" HorizontalAlignment="Center" Content="{Binding Path=ERRORCODE, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <Button x:Name="btnStart1" Click="Button_Click" Grid.Row="3" Margin="5" Content="START" FontSize="40" Background="#E1E1E1"/>
+                        <Button x:Name="btnStart1" Click="Button_Click" Grid.Row="3" Margin="5" Content="{Binding Path=BUTTONCONTENT, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Path=BUTTONENABLE, UpdateSourceTrigger=PropertyChanged}" FontSize="40" Background="#E1E1E1"/>
 
                     </Grid>
                 </Border>
 
 
+                <!--ONT 2-->
                 <Border x:Name="border_DUT02" Grid.Column="2" CornerRadius="5" Background="Transparent" BorderBrush="White" BorderThickness="1,5,1,3">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="140"/>
+                            <RowDefinition Height="125"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="100"/>
                             <RowDefinition Height="100"/>
@@ -220,7 +375,7 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Column="0" Content="MAC:" FontSize="16" FontWeight="SemiBold"/>
-                                <Label Grid.Column="1" FontSize="16" FontWeight="Bold" Content="--"/>
+                                <Label Grid.Column="1" FontSize="16" FontWeight="Bold" Content="{Binding Path=MACADDRESS, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                             </Grid>
                             <Grid Height="30" Margin="0,5,0,0">
                                 <Grid.ColumnDefinitions>
@@ -228,7 +383,7 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Column="0" Content="BOSA:" FontSize="16" FontWeight="SemiBold"/>
-                                <Label Grid.Column="1" FontSize="16" FontWeight="Bold" Content="--"/>
+                                <Label Grid.Column="1" FontSize="16" FontWeight="Bold" Content="{Binding Path=BOSASERIAL, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                             </Grid>
                         </StackPanel>
 
@@ -242,44 +397,177 @@
                                     <StackPanel Margin="10,10,0,0">
                                         <!--Set V_Apd + Slope-->
                                         <WrapPanel>
-                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
-                                            <Label FontSize="16" FontWeight="Bold" Content="Set V_apd + Slope" Foreground="#2e4b4f"/>
+                                            <Border Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=VAPDRESULT}" Value="NONE">
+                                                                <Setter Property="Background" Value="#E1E1E1"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=VAPDRESULT}" Value="Wait">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundWait}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=VAPDRESULT}" Value="PASS">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundPass}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=VAPDRESULT}" Value="FAIL">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundFail}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                            </Border>
+                                            <TextBlock FontSize="16" FontWeight="Bold" Text="Set V_apd + Slope" Foreground="#2e4b4f"/>
                                         </WrapPanel>
 
                                         <!--Overload + Sensitivity-->
-                                        <WrapPanel>
-                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
-                                            <Label FontSize="16" FontWeight="Bold" Content="Overload + Sensitivity" Foreground="#2e4b4f"/>
+                                        <WrapPanel Margin="0,5,0,0">
+                                            <Border Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=OVERLOADRESULT}" Value="NONE">
+                                                                <Setter Property="Background" Value="#E1E1E1"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=OVERLOADRESULT}" Value="Wait">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundWait}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=OVERLOADRESULT}" Value="PASS">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundPass}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=OVERLOADRESULT}" Value="FAIL">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundFail}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                            </Border>
+                                            <TextBlock FontSize="16" FontWeight="Bold" Text="Overload + Sensitivity" Foreground="#2e4b4f"/>
                                         </WrapPanel>
 
                                         <!--RX DDMI Calibration-->
-                                        <WrapPanel>
-                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
-                                            <Label FontSize="16" FontWeight="Bold" Content="RX DDMI Calibration" Foreground="#2e4b4f"/>
+                                        <WrapPanel Margin="0,5,0,0">
+                                            <Border Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=CALIBDDMIRESULT}" Value="NONE">
+                                                                <Setter Property="Background" Value="#E1E1E1"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CALIBDDMIRESULT}" Value="Wait">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundWait}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CALIBDDMIRESULT}" Value="PASS">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundPass}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CALIBDDMIRESULT}" Value="FAIL">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundFail}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                            </Border>
+                                            <TextBlock FontSize="16" FontWeight="Bold" Text="RX DDMI Calibration" Foreground="#2e4b4f"/>
                                         </WrapPanel>
 
                                         <!--RX DDMI Curve-->
-                                        <WrapPanel>
-                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
-                                            <Label FontSize="16" FontWeight="Bold" Content="RX DDMI Curve" Foreground="#2e4b4f"/>
+                                        <WrapPanel Margin="0,5,0,0">
+                                            <Border Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=CURVEDDMIRESULT}" Value="NONE">
+                                                                <Setter Property="Background" Value="#E1E1E1"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CURVEDDMIRESULT}" Value="Wait">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundWait}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CURVEDDMIRESULT}" Value="PASS">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundPass}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CURVEDDMIRESULT}" Value="FAIL">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundFail}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                            </Border>
+                                            <TextBlock FontSize="16" FontWeight="Bold" Text="RX DDMI Curve" Foreground="#2e4b4f"/>
                                         </WrapPanel>
 
                                         <!--LOS Calibration-->
-                                        <WrapPanel>
-                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
-                                            <Label FontSize="16" FontWeight="Bold" Content="LOS Calibration" Foreground="#2e4b4f"/>
+                                        <WrapPanel Margin="0,5,0,0">
+                                            <Border Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=CALIBLOSRESULT}" Value="NONE">
+                                                                <Setter Property="Background" Value="#E1E1E1"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CALIBLOSRESULT}" Value="Wait">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundWait}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CALIBLOSRESULT}" Value="PASS">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundPass}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CALIBLOSRESULT}" Value="FAIL">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundFail}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                            </Border>
+                                            <TextBlock FontSize="16" FontWeight="Bold" Text="LOS Calibration" Foreground="#2e4b4f"/>
                                         </WrapPanel>
 
                                         <!--LOS Check-->
-                                        <WrapPanel>
-                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
-                                            <Label FontSize="16" FontWeight="Bold" Content="LOS Check" Foreground="#2e4b4f"/>
+                                        <WrapPanel Margin="0,5,0,0">
+                                            <Border Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=CHECKLOSRESULT}" Value="NONE">
+                                                                <Setter Property="Background" Value="#E1E1E1"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CHECKLOSRESULT}" Value="Wait">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundWait}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CHECKLOSRESULT}" Value="PASS">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundPass}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CHECKLOSRESULT}" Value="FAIL">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundFail}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                            </Border>
+                                            <TextBlock FontSize="16" FontWeight="Bold" Text="LOS Check" Foreground="#2e4b4f"/>
                                         </WrapPanel>
 
                                         <!--Write Flash-->
-                                        <WrapPanel>
-                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
-                                            <Label FontSize="16" FontWeight="Bold" Content="Write Flash" Foreground="#2e4b4f"/>
+                                        <WrapPanel Margin="0,5,0,0">
+                                            <Border Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=WRITEFLASHRESULT}" Value="NONE">
+                                                                <Setter Property="Background" Value="#E1E1E1"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=WRITEFLASHRESULT}" Value="Wait">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundWait}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=WRITEFLASHRESULT}" Value="PASS">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundPass}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=WRITEFLASHRESULT}" Value="FAIL">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundFail}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                            </Border>
+                                            <TextBlock FontSize="16" FontWeight="Bold" Text="Write Flash" Foreground="#2e4b4f"/>
                                         </WrapPanel>
 
                                     </StackPanel>
@@ -306,19 +594,39 @@
 
                         <StackPanel HorizontalAlignment="Center" Grid.Row="2" Margin="5">
                             <Label FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" Content="TOTAL"/>
-                            <Label FontSize="50" FontWeight="Bold" Margin="0,-20,0,0" HorizontalAlignment="Center" Content="NONE"/>
-                            <Label FontSize="15" FontWeight="SemiBold" Foreground="Red" Margin="0,-20,0,0" HorizontalAlignment="Center" Content="--"/>
+                            <Label FontSize="70" FontWeight="Bold" Margin="0,-25,0,0" HorizontalAlignment="Center" Content="{Binding Path=TOTALRESULT, UpdateSourceTrigger=PropertyChanged}">
+                                <Label.Style>
+                                    <Style TargetType="Label">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=TOTALRESULT}" Value="PASS">
+                                                <Setter Property="Foreground" Value="{StaticResource colorTextOK}"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=TOTALRESULT}" Value="FAIL">
+                                                <Setter Property="Foreground" Value="{StaticResource colorTextNG}"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=TOTALRESULT}" Value="Wait">
+                                                <Setter Property="Foreground" Value="{StaticResource colorTextWait}"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=TOTALRESULT}" Value="NONE">
+                                                <Setter Property="Foreground" Value="{StaticResource colorTextNone}"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Label.Style>
+                            </Label>
+                            <Label FontSize="15" FontWeight="SemiBold" Foreground="Red" Margin="0,-20,0,0" HorizontalAlignment="Center" Content="{Binding Path=ERRORCODE, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <Button x:Name="btnStart2" Click="Button_Click" Grid.Row="3" Margin="5" Content="START" FontSize="40" Background="#E1E1E1"/>
+                        <Button x:Name="btnStart2" Click="Button_Click" Grid.Row="3" Margin="5" Content="{Binding Path=BUTTONCONTENT, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Path=BUTTONENABLE, UpdateSourceTrigger=PropertyChanged}" FontSize="40" Background="#E1E1E1"/>
 
                     </Grid>
                 </Border>
 
+                <!--ONT 3-->
                 <Border x:Name="border_DUT03" Grid.Column="4" CornerRadius="5" Background="Transparent" BorderBrush="White" BorderThickness="1,5,1,3">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="140"/>
+                            <RowDefinition Height="125"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="100"/>
                             <RowDefinition Height="100"/>
@@ -332,7 +640,7 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Column="0" Content="MAC:" FontSize="16" FontWeight="SemiBold"/>
-                                <Label Grid.Column="1" FontSize="16" FontWeight="Bold" Content="--"/>
+                                <Label Grid.Column="1" FontSize="16" FontWeight="Bold" Content="{Binding Path=MACADDRESS, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                             </Grid>
                             <Grid Height="30" Margin="0,5,0,0">
                                 <Grid.ColumnDefinitions>
@@ -340,7 +648,7 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Column="0" Content="BOSA:" FontSize="16" FontWeight="SemiBold"/>
-                                <Label Grid.Column="1" FontSize="16" FontWeight="Bold" Content="--"/>
+                                <Label Grid.Column="1" FontSize="16" FontWeight="Bold" Content="{Binding Path=BOSASERIAL, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                             </Grid>
                         </StackPanel>
 
@@ -354,44 +662,177 @@
                                     <StackPanel Margin="10,10,0,0">
                                         <!--Set V_Apd + Slope-->
                                         <WrapPanel>
-                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
-                                            <Label FontSize="16" FontWeight="Bold" Content="Set V_apd + Slope" Foreground="#2e4b4f"/>
+                                            <Border Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=VAPDRESULT}" Value="NONE">
+                                                                <Setter Property="Background" Value="#E1E1E1"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=VAPDRESULT}" Value="Wait">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundWait}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=VAPDRESULT}" Value="PASS">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundPass}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=VAPDRESULT}" Value="FAIL">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundFail}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                            </Border>
+                                            <TextBlock FontSize="16" FontWeight="Bold" Text="Set V_apd + Slope" Foreground="#2e4b4f"/>
                                         </WrapPanel>
 
                                         <!--Overload + Sensitivity-->
-                                        <WrapPanel>
-                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
-                                            <Label FontSize="16" FontWeight="Bold" Content="Overload + Sensitivity" Foreground="#2e4b4f"/>
+                                        <WrapPanel Margin="0,5,0,0">
+                                            <Border Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=OVERLOADRESULT}" Value="NONE">
+                                                                <Setter Property="Background" Value="#E1E1E1"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=OVERLOADRESULT}" Value="Wait">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundWait}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=OVERLOADRESULT}" Value="PASS">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundPass}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=OVERLOADRESULT}" Value="FAIL">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundFail}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                            </Border>
+                                            <TextBlock FontSize="16" FontWeight="Bold" Text="Overload + Sensitivity" Foreground="#2e4b4f"/>
                                         </WrapPanel>
 
                                         <!--RX DDMI Calibration-->
-                                        <WrapPanel>
-                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
-                                            <Label FontSize="16" FontWeight="Bold" Content="RX DDMI Calibration" Foreground="#2e4b4f"/>
+                                        <WrapPanel Margin="0,5,0,0">
+                                            <Border Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=CALIBDDMIRESULT}" Value="NONE">
+                                                                <Setter Property="Background" Value="#E1E1E1"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CALIBDDMIRESULT}" Value="Wait">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundWait}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CALIBDDMIRESULT}" Value="PASS">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundPass}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CALIBDDMIRESULT}" Value="FAIL">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundFail}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                            </Border>
+                                            <TextBlock FontSize="16" FontWeight="Bold" Text="RX DDMI Calibration" Foreground="#2e4b4f"/>
                                         </WrapPanel>
 
                                         <!--RX DDMI Curve-->
-                                        <WrapPanel>
-                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
-                                            <Label FontSize="16" FontWeight="Bold" Content="RX DDMI Curve" Foreground="#2e4b4f"/>
+                                        <WrapPanel Margin="0,5,0,0">
+                                            <Border Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=CURVEDDMIRESULT}" Value="NONE">
+                                                                <Setter Property="Background" Value="#E1E1E1"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CURVEDDMIRESULT}" Value="Wait">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundWait}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CURVEDDMIRESULT}" Value="PASS">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundPass}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CURVEDDMIRESULT}" Value="FAIL">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundFail}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                            </Border>
+                                            <TextBlock FontSize="16" FontWeight="Bold" Text="RX DDMI Curve" Foreground="#2e4b4f"/>
                                         </WrapPanel>
 
                                         <!--LOS Calibration-->
-                                        <WrapPanel>
-                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
-                                            <Label FontSize="16" FontWeight="Bold" Content="LOS Calibration" Foreground="#2e4b4f"/>
+                                        <WrapPanel Margin="0,5,0,0">
+                                            <Border Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=CALIBLOSRESULT}" Value="NONE">
+                                                                <Setter Property="Background" Value="#E1E1E1"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CALIBLOSRESULT}" Value="Wait">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundWait}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CALIBLOSRESULT}" Value="PASS">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundPass}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CALIBLOSRESULT}" Value="FAIL">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundFail}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                            </Border>
+                                            <TextBlock FontSize="16" FontWeight="Bold" Text="LOS Calibration" Foreground="#2e4b4f"/>
                                         </WrapPanel>
 
                                         <!--LOS Check-->
-                                        <WrapPanel>
-                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
-                                            <Label FontSize="16" FontWeight="Bold" Content="LOS Check" Foreground="#2e4b4f"/>
+                                        <WrapPanel Margin="0,5,0,0">
+                                            <Border Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=CHECKLOSRESULT}" Value="NONE">
+                                                                <Setter Property="Background" Value="#E1E1E1"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CHECKLOSRESULT}" Value="Wait">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundWait}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CHECKLOSRESULT}" Value="PASS">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundPass}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CHECKLOSRESULT}" Value="FAIL">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundFail}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                            </Border>
+                                            <TextBlock FontSize="16" FontWeight="Bold" Text="LOS Check" Foreground="#2e4b4f"/>
                                         </WrapPanel>
 
                                         <!--Write Flash-->
-                                        <WrapPanel>
-                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
-                                            <Label FontSize="16" FontWeight="Bold" Content="Write Flash" Foreground="#2e4b4f"/>
+                                        <WrapPanel Margin="0,5,0,0">
+                                            <Border Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=WRITEFLASHRESULT}" Value="NONE">
+                                                                <Setter Property="Background" Value="#E1E1E1"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=WRITEFLASHRESULT}" Value="Wait">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundWait}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=WRITEFLASHRESULT}" Value="PASS">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundPass}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=WRITEFLASHRESULT}" Value="FAIL">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundFail}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                            </Border>
+                                            <TextBlock FontSize="16" FontWeight="Bold" Text="Write Flash" Foreground="#2e4b4f"/>
                                         </WrapPanel>
 
                                     </StackPanel>
@@ -418,19 +859,39 @@
 
                         <StackPanel HorizontalAlignment="Center" Grid.Row="2" Margin="5">
                             <Label FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" Content="TOTAL"/>
-                            <Label FontSize="50" FontWeight="Bold" Margin="0,-20,0,0" HorizontalAlignment="Center" Content="NONE"/>
-                            <Label FontSize="15" FontWeight="SemiBold" Foreground="Red" Margin="0,-20,0,0" HorizontalAlignment="Center" Content="--"/>
+                            <Label FontSize="70" FontWeight="Bold" Margin="0,-25,0,0" HorizontalAlignment="Center" Content="{Binding Path=TOTALRESULT, UpdateSourceTrigger=PropertyChanged}">
+                                <Label.Style>
+                                    <Style TargetType="Label">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=TOTALRESULT}" Value="PASS">
+                                                <Setter Property="Foreground" Value="{StaticResource colorTextOK}"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=TOTALRESULT}" Value="FAIL">
+                                                <Setter Property="Foreground" Value="{StaticResource colorTextNG}"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=TOTALRESULT}" Value="Wait">
+                                                <Setter Property="Foreground" Value="{StaticResource colorTextWait}"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=TOTALRESULT}" Value="NONE">
+                                                <Setter Property="Foreground" Value="{StaticResource colorTextNone}"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Label.Style>
+                            </Label>
+                            <Label FontSize="15" FontWeight="SemiBold" Foreground="Red" Margin="0,-20,0,0" HorizontalAlignment="Center" Content="{Binding Path=ERRORCODE, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <Button x:Name="btnStart3" Click="Button_Click" Grid.Row="3" Margin="5" Content="START" FontSize="40" Background="#E1E1E1"/>
+                        <Button x:Name="btnStart3" Click="Button_Click" Grid.Row="3" Margin="5" Content="{Binding Path=BUTTONCONTENT, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Path=BUTTONENABLE, UpdateSourceTrigger=PropertyChanged}" FontSize="40" Background="#E1E1E1"/>
 
                     </Grid>
                 </Border>
 
+                <!--ONT 4-->
                 <Border x:Name="border_DUT04" Grid.Column="6" CornerRadius="5" Background="Transparent" BorderBrush="White" BorderThickness="1,5,1,3">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="140"/>
+                            <RowDefinition Height="125"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="100"/>
                             <RowDefinition Height="100"/>
@@ -444,7 +905,7 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Column="0" Content="MAC:" FontSize="16" FontWeight="SemiBold"/>
-                                <Label Grid.Column="1" FontSize="16" FontWeight="Bold" Content="--"/>
+                                <Label Grid.Column="1" FontSize="16" FontWeight="Bold" Content="{Binding Path=MACADDRESS, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                             </Grid>
                             <Grid Height="30" Margin="0,5,0,0">
                                 <Grid.ColumnDefinitions>
@@ -452,7 +913,7 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Column="0" Content="BOSA:" FontSize="16" FontWeight="SemiBold"/>
-                                <Label Grid.Column="1" FontSize="16" FontWeight="Bold" Content="--"/>
+                                <Label Grid.Column="1" FontSize="16" FontWeight="Bold" Content="{Binding Path=BOSASERIAL, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                             </Grid>
                         </StackPanel>
 
@@ -466,44 +927,177 @@
                                     <StackPanel Margin="10,10,0,0">
                                         <!--Set V_Apd + Slope-->
                                         <WrapPanel>
-                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
-                                            <Label FontSize="16" FontWeight="Bold" Content="Set V_apd + Slope" Foreground="#2e4b4f"/>
+                                            <Border Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=VAPDRESULT}" Value="NONE">
+                                                                <Setter Property="Background" Value="#E1E1E1"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=VAPDRESULT}" Value="Wait">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundWait}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=VAPDRESULT}" Value="PASS">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundPass}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=VAPDRESULT}" Value="FAIL">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundFail}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                            </Border>
+                                            <TextBlock FontSize="16" FontWeight="Bold" Text="Set V_apd + Slope" Foreground="#2e4b4f"/>
                                         </WrapPanel>
 
                                         <!--Overload + Sensitivity-->
-                                        <WrapPanel>
-                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
-                                            <Label FontSize="16" FontWeight="Bold" Content="Overload + Sensitivity" Foreground="#2e4b4f"/>
+                                        <WrapPanel Margin="0,5,0,0">
+                                            <Border Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=OVERLOADRESULT}" Value="NONE">
+                                                                <Setter Property="Background" Value="#E1E1E1"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=OVERLOADRESULT}" Value="Wait">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundWait}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=OVERLOADRESULT}" Value="PASS">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundPass}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=OVERLOADRESULT}" Value="FAIL">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundFail}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                            </Border>
+                                            <TextBlock FontSize="16" FontWeight="Bold" Text="Overload + Sensitivity" Foreground="#2e4b4f"/>
                                         </WrapPanel>
 
                                         <!--RX DDMI Calibration-->
-                                        <WrapPanel>
-                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
-                                            <Label FontSize="16" FontWeight="Bold" Content="RX DDMI Calibration" Foreground="#2e4b4f"/>
+                                        <WrapPanel Margin="0,5,0,0">
+                                            <Border Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=CALIBDDMIRESULT}" Value="NONE">
+                                                                <Setter Property="Background" Value="#E1E1E1"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CALIBDDMIRESULT}" Value="Wait">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundWait}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CALIBDDMIRESULT}" Value="PASS">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundPass}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CALIBDDMIRESULT}" Value="FAIL">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundFail}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                            </Border>
+                                            <TextBlock FontSize="16" FontWeight="Bold" Text="RX DDMI Calibration" Foreground="#2e4b4f"/>
                                         </WrapPanel>
 
                                         <!--RX DDMI Curve-->
-                                        <WrapPanel>
-                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
-                                            <Label FontSize="16" FontWeight="Bold" Content="RX DDMI Curve" Foreground="#2e4b4f"/>
+                                        <WrapPanel Margin="0,5,0,0">
+                                            <Border Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=CURVEDDMIRESULT}" Value="NONE">
+                                                                <Setter Property="Background" Value="#E1E1E1"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CURVEDDMIRESULT}" Value="Wait">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundWait}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CURVEDDMIRESULT}" Value="PASS">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundPass}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CURVEDDMIRESULT}" Value="FAIL">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundFail}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                            </Border>
+                                            <TextBlock FontSize="16" FontWeight="Bold" Text="RX DDMI Curve" Foreground="#2e4b4f"/>
                                         </WrapPanel>
 
                                         <!--LOS Calibration-->
-                                        <WrapPanel>
-                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
-                                            <Label FontSize="16" FontWeight="Bold" Content="LOS Calibration" Foreground="#2e4b4f"/>
+                                        <WrapPanel Margin="0,5,0,0">
+                                            <Border Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=CALIBLOSRESULT}" Value="NONE">
+                                                                <Setter Property="Background" Value="#E1E1E1"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CALIBLOSRESULT}" Value="Wait">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundWait}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CALIBLOSRESULT}" Value="PASS">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundPass}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CALIBLOSRESULT}" Value="FAIL">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundFail}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                            </Border>
+                                            <TextBlock FontSize="16" FontWeight="Bold" Text="LOS Calibration" Foreground="#2e4b4f"/>
                                         </WrapPanel>
 
                                         <!--LOS Check-->
-                                        <WrapPanel>
-                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
-                                            <Label FontSize="16" FontWeight="Bold" Content="LOS Check" Foreground="#2e4b4f"/>
+                                        <WrapPanel Margin="0,5,0,0">
+                                            <Border Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=CHECKLOSRESULT}" Value="NONE">
+                                                                <Setter Property="Background" Value="#E1E1E1"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CHECKLOSRESULT}" Value="Wait">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundWait}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CHECKLOSRESULT}" Value="PASS">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundPass}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=CHECKLOSRESULT}" Value="FAIL">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundFail}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                            </Border>
+                                            <TextBlock FontSize="16" FontWeight="Bold" Text="LOS Check" Foreground="#2e4b4f"/>
                                         </WrapPanel>
 
                                         <!--Write Flash-->
-                                        <WrapPanel>
-                                            <Border Background="#E1E1E1" Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1"/>
-                                            <Label FontSize="16" FontWeight="Bold" Content="Write Flash" Foreground="#2e4b4f"/>
+                                        <WrapPanel Margin="0,5,0,0">
+                                            <Border Margin="0,0,5,0" CornerRadius="2" Width="70" Height="25" BorderBrush="#777777" BorderThickness="1">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=WRITEFLASHRESULT}" Value="NONE">
+                                                                <Setter Property="Background" Value="#E1E1E1"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=WRITEFLASHRESULT}" Value="Wait">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundWait}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=WRITEFLASHRESULT}" Value="PASS">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundPass}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=WRITEFLASHRESULT}" Value="FAIL">
+                                                                <Setter Property="Background" Value="{StaticResource BackgroundFail}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                            </Border>
+                                            <TextBlock FontSize="16" FontWeight="Bold" Text="Write Flash" Foreground="#2e4b4f"/>
                                         </WrapPanel>
 
                                     </StackPanel>
@@ -530,15 +1124,34 @@
 
                         <StackPanel HorizontalAlignment="Center" Grid.Row="2" Margin="5">
                             <Label FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" Content="TOTAL"/>
-                            <Label FontSize="50" FontWeight="Bold" Margin="0,-20,0,0" HorizontalAlignment="Center" Content="NONE"/>
-                            <Label FontSize="15" FontWeight="SemiBold" Foreground="Red" Margin="0,-20,0,0" HorizontalAlignment="Center" Content="--"/>
+                            <Label FontSize="70" FontWeight="Bold" Margin="0,-25,0,0" HorizontalAlignment="Center" Content="{Binding Path=TOTALRESULT, UpdateSourceTrigger=PropertyChanged}">
+                                <Label.Style>
+                                    <Style TargetType="Label">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=TOTALRESULT}" Value="PASS">
+                                                <Setter Property="Foreground" Value="{StaticResource colorTextOK}"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=TOTALRESULT}" Value="FAIL">
+                                                <Setter Property="Foreground" Value="{StaticResource colorTextNG}"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=TOTALRESULT}" Value="Wait">
+                                                <Setter Property="Foreground" Value="{StaticResource colorTextWait}"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=TOTALRESULT}" Value="NONE">
+                                                <Setter Property="Foreground" Value="{StaticResource colorTextNone}"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Label.Style>
+                            </Label>
+                            <Label FontSize="15" FontWeight="SemiBold" Foreground="Red" Margin="0,-20,0,0" HorizontalAlignment="Center" Content="{Binding Path=ERRORCODE, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <Button x:Name="btnStart4" Click="Button_Click" Grid.Row="3" Margin="5" Content="START" FontSize="40" Background="#E1E1E1"/>
+                        <Button x:Name="btnStart4" Click="Button_Click" Grid.Row="3" Margin="5" Content="{Binding Path=BUTTONCONTENT, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Path=BUTTONENABLE, UpdateSourceTrigger=PropertyChanged}" FontSize="40" Background="#E1E1E1"/>
 
                     </Grid>
                 </Border>
-                
+
             </Grid>
             
             <!--App status-->

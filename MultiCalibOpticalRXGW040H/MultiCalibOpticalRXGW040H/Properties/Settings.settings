@@ -35,25 +35,25 @@
     <Setting Name="debug4" Type="System.String" Scope="User">
       <Value Profile="(Default)">COM4</Value>
     </Setting>
-    <Setting Name="oltPower1" Type="System.Double" Scope="User">
+    <Setting Name="oltPower1" Type="System.String" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="oltPower2" Type="System.Double" Scope="User">
+    <Setting Name="oltPower2" Type="System.String" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="oltPower3" Type="System.Double" Scope="User">
+    <Setting Name="oltPower3" Type="System.String" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="oltPower4" Type="System.Double" Scope="User">
+    <Setting Name="oltPower4" Type="System.String" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="bosaType" Type="System.String" Scope="User">
       <Value Profile="(Default)">Mentech</Value>
     </Setting>
-    <Setting Name="slopeUp" Type="System.Double" Scope="User">
+    <Setting Name="slopeUp" Type="System.String" Scope="User">
       <Value Profile="(Default)">0.14</Value>
     </Setting>
-    <Setting Name="slopeDown" Type="System.Double" Scope="User">
+    <Setting Name="slopeDown" Type="System.String" Scope="User">
       <Value Profile="(Default)">0.11</Value>
     </Setting>
     <Setting Name="vApd_00" Type="System.String" Scope="User">

@@ -32,12 +32,24 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Asset\Icons\refresh.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ivi.Visa.Interop, Version=5.8.0.0, Culture=neutral, PublicKeyToken=a128c98f1d7717c1, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Debug\Ivi.Visa.Interop.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
     <Reference Include="MaterialDesignThemes.Wpf, Version=2.4.0.1044, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignThemes.2.4.0.1044\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="NationalInstruments.VisaNS, Version=13.0.45.167, Culture=neutral, PublicKeyToken=4febd62461bf11a4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\NationalInstruments.VisaNS.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -63,12 +75,16 @@
     <Compile Include="Function\Base\globalData.cs" />
     <Compile Include="Function\Base\Parameters.cs" />
     <Compile Include="Function\Custom\customDEFINE.cs" />
+    <Compile Include="Function\Instrument\FVA3150.cs" />
     <Compile Include="Function\IO\BosaReport.cs" />
     <Compile Include="Function\IO\LogFile.cs" />
     <Compile Include="Function\Ont\GW.cs" />
     <Compile Include="Function\Ont\GW020BoB.cs" />
     <Compile Include="Function\Ont\GW040H.cs" />
     <Compile Include="Function\Protocol\Serial.cs" />
+    <Compile Include="subControls\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
     <Compile Include="subControls\inputBosaWindow.xaml.cs">
       <DependentUpon>inputBosaWindow.xaml</DependentUpon>
     </Compile>
@@ -141,6 +157,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="subControls\About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="subControls\inputBosaWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -186,9 +206,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Asset\Icons\" />
     <Folder Include="Function\Excute\" />
-    <Folder Include="Function\Instrument\" />
     <Folder Include="userControls\" />
   </ItemGroup>
   <ItemGroup>
@@ -218,6 +236,9 @@
     <Resource Include="Asset\Images\SQL.png" />
     <Resource Include="Asset\Images\usbDebug.PNG" />
     <Resource Include="Asset\Images\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Asset\Icons\refresh.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -27,15 +27,17 @@
                     <SolidColorBrush x:Key="colorTextTitle" Color="#FFF5F5F5"/>
                     <SolidColorBrush x:Key="colorTextNG" Color="#FFFF5050"/>
                     <SolidColorBrush x:Key="colorTextOK" Color="Lime"/>
+                    <SolidColorBrush x:Key="colorTextNone" Color="#2e4b4f"/>
                     <SolidColorBrush x:Key="colorContentOK" Color="#FF4CAF50"/>
                     <SolidColorBrush x:Key="colorTextWait" Color="#FFF9A825"/>
-                    <SolidColorBrush x:Key="colorTextYellow" Color="#f6f91d"/>
+                    <SolidColorBrush x:Key="colorTextYellow" Color="#d5dd3e"/>
 
                     <SolidColorBrush x:Key="colorBorder" Color="#FF039BE5"/>
 
                     <SolidColorBrush x:Key="colorBackground" Color="#FFEEEEEE"/>
                     <SolidColorBrush x:Key="BackgroundReady" Color="#FFFFFFFF"/>
-                    <SolidColorBrush x:Key="BackgroundWait" Color="#FFF9A825"/>
+                    <!--<SolidColorBrush x:Key="BackgroundWait" Color="#FFF9A825"/>-->
+                    <SolidColorBrush x:Key="BackgroundWait" Color="#d6ed23"/>
                     <SolidColorBrush x:Key="BackgroundPass" Color="#FF46e81e"/>
                     <SolidColorBrush x:Key="BackgroundFail" Color="#FFFF5050"/>
                     <SolidColorBrush x:Key="BackgroundIgnore" Color="#B6B5BC"/>

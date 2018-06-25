@@ -104,28 +104,28 @@ namespace MultiCalibOpticalRXGW040H.Function
         //-------------------------------------------------------
 
         //CAU HINH SUY HAO //------------------------------------
-        public double OLTPOWER1 {
+        public string OLTPOWER1 {
             get { return Properties.Settings.Default.oltPower1; }
             set {
                 Properties.Settings.Default.oltPower1 = value;
                 OnPropertyChanged(nameof(OLTPOWER1));
             }
         }
-        public double OLTPOWER2 {
+        public string OLTPOWER2 {
             get { return Properties.Settings.Default.oltPower2; }
             set {
                 Properties.Settings.Default.oltPower2 = value;
                 OnPropertyChanged(nameof(OLTPOWER2));
             }
         }
-        public double OLTPOWER3 {
+        public string OLTPOWER3 {
             get { return Properties.Settings.Default.oltPower3; }
             set {
                 Properties.Settings.Default.oltPower3 = value;
                 OnPropertyChanged(nameof(OLTPOWER3));
             }
         }
-        public double OLTPOWER4 {
+        public string OLTPOWER4 {
             get { return Properties.Settings.Default.oltPower4; }
             set {
                 Properties.Settings.Default.oltPower4 = value;
@@ -149,14 +149,14 @@ namespace MultiCalibOpticalRXGW040H.Function
                 OnPropertyChanged(nameof(BOSASNLEN));
             }
         }
-        public double SLOPEUP {
+        public string SLOPEUP {
             get { return Properties.Settings.Default.slopeUp; }
             set {
                 Properties.Settings.Default.slopeUp = value;
                 OnPropertyChanged(nameof(SLOPEUP));
             }
         }
-        public double SLOPEDOWN {
+        public string SLOPEDOWN {
             get { return Properties.Settings.Default.slopeDown; }
             set {
                 Properties.Settings.Default.slopeDown = value;
@@ -223,8 +223,8 @@ namespace MultiCalibOpticalRXGW040H.Function
 
             BOSATYPE = "Mentech";
 
-            SLOPEUP = 0.14;
-            SLOPEDOWN = 0.11;
+            SLOPEUP = "0.14";
+            SLOPEDOWN = "0.11";
             VAPD00 = "012E";
             VAPD40 = "0178";
             VAPD80 = "01C1";
@@ -241,6 +241,189 @@ namespace MultiCalibOpticalRXGW040H.Function
             }
         }
 
+        // COMMON ------------------------------//
+        string _ontindex;
+        public string ONTINDEX {
+            get { return _ontindex; }
+            set {
+                _ontindex = value;
+                OnPropertyChanged(nameof(ONTINDEX));
+            }
+        }
+        string _comport;
+        public string COMPORT {
+            get { return _comport; }
+            set {
+                _comport = value;
+                OnPropertyChanged(nameof(COMPORT));
+            }
+        }
+        string _gpib;
+        public string GPIB {
+            get { return _gpib; }
+            set {
+                _gpib = value;
+                OnPropertyChanged(nameof(GPIB));
+            }
+        }
+        string _macaddress;
+        public string MACADDRESS {
+            get { return _macaddress; }
+            set {
+                _macaddress = value;
+                OnPropertyChanged(nameof(MACADDRESS));
+            }
+        }
+        string _bosaserial;
+        public string BOSASERIAL {
+            get { return _bosaserial; }
+            set {
+                _bosaserial = value;
+                OnPropertyChanged(nameof(BOSASERIAL));
+            }
+        }
+        //-------------------------------------//
+
+        // RESULT -----------------------------//
+        string _vapdresult;
+        public string VAPDRESULT {
+            get { return _vapdresult; }
+            set {
+                _vapdresult = value;
+                OnPropertyChanged(nameof(VAPDRESULT));
+            }
+        }
+        string _overloadresult;
+        public string OVERLOADRESULT {
+            get { return _overloadresult; }
+            set {
+                _overloadresult = value;
+                OnPropertyChanged(nameof(OVERLOADRESULT));
+            }
+        }
+        string _calibddmiresult;
+        public string CALIBDDMIRESULT {
+            get { return _calibddmiresult; }
+            set {
+                _calibddmiresult = value;
+                OnPropertyChanged(nameof(CALIBDDMIRESULT));
+            }
+        }
+        string _curveddmiresult;
+        public string CURVEDDMIRESULT {
+            get { return _curveddmiresult; }
+            set {
+                _curveddmiresult = value;
+                OnPropertyChanged(nameof(CURVEDDMIRESULT));
+            }
+        }
+        string _caliblosresult;
+        public string CALIBLOSRESULT {
+            get { return _caliblosresult; }
+            set {
+                _caliblosresult = value;
+                OnPropertyChanged(nameof(CALIBLOSRESULT));
+            }
+        }
+        string _checklosresult;
+        public string CHECKLOSRESULT {
+            get { return _checklosresult; }
+            set {
+                _checklosresult = value;
+                OnPropertyChanged(nameof(CHECKLOSRESULT));
+            }
+        }
+        string _writeflashresult;
+        public string WRITEFLASHRESULT {
+            get { return _writeflashresult; }
+            set {
+                _writeflashresult = value;
+                OnPropertyChanged(nameof(WRITEFLASHRESULT));
+            }
+        }
+        string _totalresult;
+        public string TOTALRESULT {
+            get { return _totalresult; }
+            set {
+                _totalresult = value;
+                OnPropertyChanged(nameof(TOTALRESULT));
+            }
+        }
+        //-------------------------------------//
+
+        // TOTAL ------------------------------//
+        string _systemlog;
+        public string SYSTEMLOG {
+            get { return _systemlog; }
+            set {
+                _systemlog = value;
+                OnPropertyChanged(nameof(SYSTEMLOG));
+            }
+        }
+        string _errorcode;
+        public string ERRORCODE {
+            get { return _errorcode; }
+            set {
+                _errorcode = value;
+                OnPropertyChanged(nameof(ERRORCODE));
+            }
+        }
+        string _ontlog;
+        public string ONTLOG {
+            get { return _ontlog; }
+            set {
+                _ontlog = value;
+                OnPropertyChanged(nameof(ONTLOG));
+            }
+        }
+        string _buttoncontent;
+        public string BUTTONCONTENT {
+            get { return _buttoncontent; }
+            set {
+                _buttoncontent = value;
+                OnPropertyChanged(nameof(BUTTONCONTENT));
+            }
+        }
+        bool _buttonenable;
+        public bool BUTTONENABLE {
+            get { return _buttonenable; }
+            set {
+                _buttonenable = value;
+                OnPropertyChanged(nameof(BUTTONENABLE));
+            }
+        }
+        string _totaltime;
+        public string TOTALTIME {
+            get { return _totaltime; }
+            set {
+                _totaltime = value;
+                OnPropertyChanged(nameof(TOTALTIME));
+            }
+        }
+        //-------------------------------------//
+
+        public testinginfo() {
+            Initialization();
+        }
+
+        public void Initialization() {
+            this.TOTALTIME = "0";
+            this.MACADDRESS = "--";
+            this.BOSASERIAL = "--";
+            this.VAPDRESULT = Parameters.testStatus.NONE.ToString();
+            this.OVERLOADRESULT = Parameters.testStatus.NONE.ToString();
+            this.CALIBDDMIRESULT = Parameters.testStatus.NONE.ToString();
+            this.CURVEDDMIRESULT = Parameters.testStatus.NONE.ToString();
+            this.CALIBLOSRESULT = Parameters.testStatus.NONE.ToString();
+            this.CHECKLOSRESULT = Parameters.testStatus.NONE.ToString();
+            this.WRITEFLASHRESULT = Parameters.testStatus.NONE.ToString();
+            this.TOTALRESULT = Parameters.testStatus.NONE.ToString();
+            this.SYSTEMLOG = "";
+            this.ONTLOG = "";
+            this.ERRORCODE = "";
+            this.BUTTONCONTENT = "START";
+            this.BUTTONENABLE = true;
+        }
 
     }
 
@@ -261,9 +444,18 @@ namespace MultiCalibOpticalRXGW040H.Function
                 OnPropertyChanged(nameof(OPACITY));
             }
         }
+        string _windowtitle;
+        public string WINDOWTITLE {
+            get { return _windowtitle; }
+            set {
+                _windowtitle = value;
+                OnPropertyChanged(nameof(WINDOWTITLE));
+            }
+        }
 
         public mainwindowinfo() {
             OPACITY = 1;
+            WINDOWTITLE = string.Format("PHẦN MỀM CALIBRATION RX QUANG ONT {0}", globalData.initSetting.ONTTYPE);
         }
     }
 
@@ -273,5 +465,28 @@ namespace MultiCalibOpticalRXGW040H.Function
         public string Vbr { get; set; }
     }
 
+    public class variables {
 
+        public variables() {
+            OLT_Power = "";
+            APD_00 = globalData.initSetting.VAPD00;
+            APD_40 = globalData.initSetting.VAPD40;
+            APD_80 = globalData.initSetting.VAPD80;
+            APD_C0 = globalData.initSetting.VAPDC0;
+            Slope_Up = globalData.initSetting.SLOPEUP;
+            Slope_Down = globalData.initSetting.SLOPEDOWN;
+            Vbr = 0;
+            Att = 0;
+        }
+
+        public string OLT_Power { get; set; }
+        public string APD_00 { get; set; }
+        public string APD_40 { get; set; }
+        public string APD_80 { get; set; }
+        public string APD_C0 { get; set; }
+        public string Slope_Up { get; set; }
+        public string Slope_Down { get; set; }
+        public double Vbr { get; set; }
+        public double Att { get; set; }
+    }
 }

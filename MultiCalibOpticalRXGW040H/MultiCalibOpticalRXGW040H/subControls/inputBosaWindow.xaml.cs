@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MultiCalibOpticalRXGW040H.Function;
 
 namespace MultiCalibOpticalRXGW040H
 {
@@ -45,21 +46,21 @@ namespace MultiCalibOpticalRXGW040H
             if (e.Key == Key.Enter) {
                 string _text = txtBosaNumber.Text.Trim();
                 //check thong tin bosa
-                //if (!BaseFunctions.bosa_SerialNumber_Is_Correct(_text)) {
-                //    tbMessage.Text = string.Format("Bosa Serial Number: \"{0}\" không hợp lệ.\nVui lòng nhập lại.", _text);
-                //    txtBosaNumber.Clear();
-                //    txtBosaNumber.Focus();
-                //    return;
-                //}
+                if (!baseFunction.bosa_SerialNumber_Is_Correct(_text)) {
+                    tbMessage.Text = string.Format("Bosa Serial Number: \"{0}\" không hợp lệ.\nVui lòng nhập lại.", _text);
+                    txtBosaNumber.Clear();
+                    txtBosaNumber.Focus();
+                    return;
+                }
 
                 //get thong tin bosa
-                //switch (this.dutNumber) {
-                //    case "01": { GlobalData.testingDataDut1.BOSASERIAL = _text; break; }
-                //    case "02": { GlobalData.testingDataDut2.BOSASERIAL = _text; break; }
-                //    case "03": { GlobalData.testingDataDut3.BOSASERIAL = _text; break; }
-                //    case "04": { GlobalData.testingDataDut4.BOSASERIAL = _text; break; }
-                //    default: break;
-                //}
+                switch (this.dutNumber) {
+                    case "01": { globalData.testingDataDut1.BOSASERIAL = _text; break; }
+                    case "02": { globalData.testingDataDut2.BOSASERIAL = _text; break; }
+                    case "03": { globalData.testingDataDut3.BOSASERIAL = _text; break; }
+                    case "04": { globalData.testingDataDut4.BOSASERIAL = _text; break; }
+                    default: break;
+                }
 
                 //close form
                 this.Close();
