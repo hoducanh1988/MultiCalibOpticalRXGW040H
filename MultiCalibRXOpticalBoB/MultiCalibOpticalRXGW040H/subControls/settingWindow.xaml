@@ -7,7 +7,32 @@
         mc:Ignorable="d"
         Title="settingWindow" Height="565" Width="700" WindowStartupLocation="CenterScreen" Topmost="True" Style="{StaticResource customWindow}">
 
+    <Window.Resources>
 
+        <Style x:Key="onOffWrapPanelFollowONTType" TargetType="WrapPanel">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=ONTTYPE}" Value="GW040H">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=ONTTYPE}" Value="GW020BoB">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="onOffGridFollowONTType" TargetType="Grid">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=ONTTYPE}" Value="GW040H">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=ONTTYPE}" Value="GW020BoB">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
+    
     <Border CornerRadius="5" BorderBrush="Black" BorderThickness="1">
         <Border.Background>
             <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
@@ -143,38 +168,38 @@
                                 <TextBox Text="{Binding Path=OLTPOWER4, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontWeight="SemiBold" Width="120" VerticalContentAlignment="Center"/>
                                 <Label Content="dBm"/>
                             </WrapPanel>
-                            <WrapPanel Margin="0,5,0,0">
+                            <WrapPanel Margin="0,5,0,0" Style="{StaticResource onOffWrapPanelFollowONTType}">
                                 <Label Content="Loại BOSA" Width="90"/>
                                 <ComboBox Text="{Binding Path=BOSATYPE, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" x:Name="cbbBosaType" FontWeight="SemiBold" Width="120" VerticalContentAlignment="Center"/>
                             </WrapPanel>
 
-                            <WrapPanel Margin="0,5,0,0">
+                            <WrapPanel Margin="0,5,0,0" Style="{StaticResource onOffWrapPanelFollowONTType}">
                                 <Label Content="Slope Up" Width="90"/>
                                 <TextBox Text="{Binding Path=SLOPEUP, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontWeight="SemiBold" Width="120" VerticalContentAlignment="Center"/>
                                 <Label Content="V/ºC"/>
                             </WrapPanel>
-                            <WrapPanel Margin="0,5,0,0">
+                            <WrapPanel Margin="0,5,0,0" Style="{StaticResource onOffWrapPanelFollowONTType}">
                                 <Label Content="Slope Down" Width="90"/>
                                 <TextBox Text="{Binding Path=SLOPEDOWN, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontWeight="SemiBold" Width="120" VerticalContentAlignment="Center"/>
                                 <Label Content="V/ºC"/>
                             </WrapPanel>
-                            <WrapPanel Margin="0,5,0,0">
+                            <WrapPanel Margin="0,5,0,0" Style="{StaticResource onOffWrapPanelFollowONTType}">
                                 <Label Content="Vapd__00" Width="90"/>
                                 <TextBox Text="{Binding Path=VAPD00, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontWeight="SemiBold" Width="120" VerticalContentAlignment="Center"/>
                             </WrapPanel>
-                            <WrapPanel Margin="0,5,0,0">
+                            <WrapPanel Margin="0,5,0,0" Style="{StaticResource onOffWrapPanelFollowONTType}">
                                 <Label Content="Vapd__40" Width="90"/>
                                 <TextBox Text="{Binding Path=VAPD40, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontWeight="SemiBold" Width="120" VerticalContentAlignment="Center"/>
                             </WrapPanel>
-                            <WrapPanel Margin="0,5,0,0">
+                            <WrapPanel Margin="0,5,0,0" Style="{StaticResource onOffWrapPanelFollowONTType}">
                                 <Label Content="Vapd__80" Width="90"/>
                                 <TextBox Text="{Binding Path=VAPD80, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontWeight="SemiBold" Width="120" VerticalContentAlignment="Center"/>
                             </WrapPanel>
-                            <WrapPanel Margin="0,5,0,0">
+                            <WrapPanel Margin="0,5,0,0" Style="{StaticResource onOffWrapPanelFollowONTType}">
                                 <Label Content="Vapd__C0" Width="90"/>
                                 <TextBox Text="{Binding Path=VAPDC0, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontWeight="SemiBold" Width="120" VerticalContentAlignment="Center"/>
                             </WrapPanel>
-                            <Grid Margin="0,5,0,0">
+                            <Grid Margin="0,5,0,0" Style="{StaticResource onOffGridFollowONTType}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="90"/>
                                     <ColumnDefinition Width="*"/>

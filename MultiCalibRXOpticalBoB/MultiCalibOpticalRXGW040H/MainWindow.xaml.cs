@@ -48,7 +48,8 @@ namespace MultiCalibOpticalRXGW040H {
             this.border_DUT04.DataContext = globalData.testingDataDut4;
 
             //Load bosa report
-            baseFunction.loadBosaReport();
+            if (globalData.initSetting.ONTTYPE == "GW040H")
+                baseFunction.loadBosaReport();
 
             timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 0, 0, 500);
@@ -140,11 +141,14 @@ namespace MultiCalibOpticalRXGW040H {
 
             this._resetDisplay(_index); //manual
 
-            this.Opacity = 0.3;
-            inputBosaWindow wb = new inputBosaWindow(_index);
-            wb.ShowDialog();
-            this.Opacity = 1;
+            if (globalData.initSetting.ONTTYPE == "GW040H") {
+                this.Opacity = 0.3;
+                inputBosaWindow wb = new inputBosaWindow(_index);
+                wb.ShowDialog();
+                this.Opacity = 1;
+            }
 
+            
             //***BEGIN -----------------------------------------//
             System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(() => {
                 //Start count time
@@ -155,30 +159,33 @@ namespace MultiCalibOpticalRXGW040H {
                 testinginfo testtmp = null;
                 baseFunction.get_Testing_Info_By_Name(_name, ref testtmp);
 
-                string _BosaSN = "";
-                testtmp.SYSTEMLOG += string.Format("Input Bosa Serial...\r\n...{0}\r\n", testtmp.BOSASERIAL);
-                _BosaSN = testtmp.BOSASERIAL;
-                if (_BosaSN == "--") return;
-
                 //Get Bosa Information from Bosa Serial ??? GW040H // GW020BoB
                 bosainfo bosaInfo = new bosainfo();
-
-                testtmp.SYSTEMLOG += string.Format("Get Bosa information...\r\n");
-                bosaInfo = this._getDataByBosaSN(_BosaSN);
-                if (bosaInfo == null) {
-                    testtmp.ERRORCODE = "(Mã Lỗi: COT-BS-0001)";
-                    testtmp.SYSTEMLOG += string.Format("...FAIL. {0}. Bosa SN is not existed\r\n", testtmp.ERRORCODE);
-                    testtmp.TOTALRESULT = Parameters.testStatus.FAIL.ToString();
-                    goto END;
-                }
-                testtmp.SYSTEMLOG += string.Format("...Ith = {0} mA\r\n", bosaInfo.Ith);
-                testtmp.SYSTEMLOG += string.Format("...Vbr = {0} V\r\n", bosaInfo.Vbr);
-                testtmp.SYSTEMLOG += string.Format("...PASS\r\n");
-
                 //Variables ??? GW040H//GW020BoB
                 variables vari = new variables();
+
+                if (globalData.initSetting.ONTTYPE == "GW040H") {
+                    string _BosaSN = "";
+                    testtmp.SYSTEMLOG += string.Format("Input Bosa Serial...\r\n...{0}\r\n", testtmp.BOSASERIAL);
+                    _BosaSN = testtmp.BOSASERIAL;
+                    if (_BosaSN == "--") return;
+                    
+                    testtmp.SYSTEMLOG += string.Format("Get Bosa information...\r\n");
+                    bosaInfo = this._getDataByBosaSN(_BosaSN);
+                    if (bosaInfo == null) {
+                        testtmp.ERRORCODE = "(Mã Lỗi: COT-BS-0001)";
+                        testtmp.SYSTEMLOG += string.Format("...FAIL. {0}. Bosa SN is not existed\r\n", testtmp.ERRORCODE);
+                        testtmp.TOTALRESULT = Parameters.testStatus.FAIL.ToString();
+                        goto END;
+                    }
+                    testtmp.SYSTEMLOG += string.Format("...Ith = {0} mA\r\n", bosaInfo.Ith);
+                    testtmp.SYSTEMLOG += string.Format("...Vbr = {0} V\r\n", bosaInfo.Vbr);
+                    testtmp.SYSTEMLOG += string.Format("...PASS\r\n");
+
+                    vari.Vbr = double.Parse(bosaInfo.Vbr);
+                }
+
                 vari.OLT_Power = _getOltPower(_index);
-                vari.Vbr = double.Parse(bosaInfo.Vbr);
 
                 //Calib RX 
                 testtmp.TOTALRESULT = Parameters.testStatus.Wait.ToString();

@@ -26,6 +26,15 @@ namespace MultiCalibOpticalRXGW040H
             listHist.Add(new history() { ID = "3", VERSION = "1.0.0.2", CONTENT = "- Chuyển giao diện phần mềm từ Winform sang WPF (fix lỗi đơ)", DATE = "20/06/2018", CHANGETYPE = "Chỉnh sửa", PERSON = "Hồ Đức Anh" });
             listHist.Add(new history() { ID = "4", VERSION = "1.0.0.3", CONTENT = "- Chỉnh sửa lệnh Save Flash chờ đến khi nhận được dấu #. Nếu quá 5s từ ONT ko có phản hồi sẽ báo FAIL.", DATE = "26/06/2018", CHANGETYPE = "Chỉnh sửa", PERSON = "Hồ Đức Anh" });
             listHist.Add(new history() { ID = "5", VERSION = "1.0.0.4", CONTENT = "- Chỉnh sửa write flash. thiết lập biết Result = true khi check PASS.", DATE = "29/06/2018", CHANGETYPE = "Chỉnh sửa", PERSON = "Hồ Đức Anh" });
+            listHist.Add(new history() {
+                ID = "6",
+                VERSION = "1.0.0.5",
+                CONTENT = "- Tích hợp thêm code calib quang RX GW020BoB.",
+                DATE = "05/07/2018",
+                CHANGETYPE = "Chỉnh sửa",
+                PERSON = "Hồ Đức Anh"
+            });
+
             this.GridAbout.ItemsSource = listHist;
         }
 

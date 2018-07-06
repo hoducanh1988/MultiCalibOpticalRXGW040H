@@ -51,7 +51,9 @@ namespace MultiCalibOpticalRXGW040H {
                         globalData.testingDataDut4.ONTTYPE = globalData.initSetting.ONTTYPE;
 
                         this.Close();
-                        baseFunction.loadBosaReport();
+                        if (globalData.initSetting.ONTTYPE == "GW040H")
+                            baseFunction.loadBosaReport();
+
                         globalData.mainWindowINFO.WINDOWTITLE = string.Format("PHẦN MỀM CALIBRATION RX QUANG ONT {0}", globalData.initSetting.ONTTYPE);
                         break;
                     }

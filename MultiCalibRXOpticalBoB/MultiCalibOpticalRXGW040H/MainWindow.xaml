@@ -49,8 +49,8 @@
             <!--App Information-->
             <Grid Grid.Row="0" Margin="5,0,0,0">
                 <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <Label FontSize="12" VerticalAlignment="Center" Foreground="Black" Content=" Phiên bản 1.0.0.4"></Label>
-                    <Label FontSize="12" VerticalAlignment="Center" Foreground="Black" Content=" Ngày tạo 29/06/2018"></Label>
+                    <Label FontSize="12" VerticalAlignment="Center" Foreground="Black" Content=" Phiên bản 1.0.0.5"></Label>
+                    <Label FontSize="12" VerticalAlignment="Center" Foreground="Black" Content=" Ngày tạo 05/07/2018"></Label>
                     <Label FontSize="12" VerticalAlignment="Center" Foreground="Black" Content=" Bản quyền công ty VNPT Technology 2018"></Label>
                 </WrapPanel>
                 <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Right" >
