@@ -332,7 +332,8 @@ namespace MultiCalibOpticalRXGW040H.Function {
             _testinfo.SYSTEMLOG += "Đang thiết lập mức suy hao = " + attenuation_level + "\r\n";
             Thread.Sleep(2000);
             //ONT.Read();
-            base.WriteLine("laser msg --set bc 1 1c");
+            //base.WriteLine("laser msg --set bc 1 1c"); 
+            base.WriteLine("laser msg --set bc 1 15"); //06.07.2018 đổi từ 1c sang 15 => nhầm code
             Thread.Sleep(100);
             base.WriteLine("laser msg --set 6e 1 44");
             Thread.Sleep(100);

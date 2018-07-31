@@ -82,9 +82,6 @@ C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibOpticalRX
 C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibOpticalRXGW040H\MultiCalibOpticalRXGW040H\obj\Debug\subControls\About.g.cs
 C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibOpticalRXGW040H\MultiCalibOpticalRXGW040H\obj\Debug\subControls\About.baml
 C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibOpticalRXGW040H\MultiCalibOpticalRXGW040H\obj\Debug\MultiCalibOpticalRXGW040H.csprojAssemblyReference.cache
-C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibRXOpticalBoB\MultiCalibOpticalRXGW040H\bin\Debug\MultiCalibOpticalRXGW040H.exe.config
-C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibRXOpticalBoB\MultiCalibOpticalRXGW040H\bin\Debug\MultiCalibOpticalRXGW040H.exe
-C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibRXOpticalBoB\MultiCalibOpticalRXGW040H\bin\Debug\MultiCalibOpticalRXGW040H.pdb
 C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibRXOpticalBoB\MultiCalibOpticalRXGW040H\bin\Debug\MaterialDesignColors.dll
 C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibRXOpticalBoB\MultiCalibOpticalRXGW040H\bin\Debug\MaterialDesignThemes.Wpf.dll
 C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibRXOpticalBoB\MultiCalibOpticalRXGW040H\bin\Debug\MaterialDesignThemes.Wpf.pdb
@@ -107,8 +104,6 @@ C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibRXOptical
 C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibRXOpticalBoB\MultiCalibOpticalRXGW040H\obj\Debug\subControls\viewWindow.g.cs
 C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibRXOpticalBoB\MultiCalibOpticalRXGW040H\obj\Debug\subControls\waitWindow.g.cs
 C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibRXOpticalBoB\MultiCalibOpticalRXGW040H\obj\Debug\App.g.cs
-C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibRXOpticalBoB\MultiCalibOpticalRXGW040H\obj\Debug\MultiCalibOpticalRXGW040H_MarkupCompile.cache
-C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibRXOpticalBoB\MultiCalibOpticalRXGW040H\obj\Debug\MultiCalibOpticalRXGW040H_MarkupCompile.lref
 C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibRXOpticalBoB\MultiCalibOpticalRXGW040H\obj\Debug\App.baml
 C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibRXOpticalBoB\MultiCalibOpticalRXGW040H\obj\Debug\Asset\Resources\customWindow.baml
 C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibRXOpticalBoB\MultiCalibOpticalRXGW040H\obj\Debug\Asset\Resources\Label.baml
@@ -118,10 +113,15 @@ C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibRXOptical
 C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibRXOpticalBoB\MultiCalibOpticalRXGW040H\obj\Debug\subControls\settingWindow.baml
 C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibRXOpticalBoB\MultiCalibOpticalRXGW040H\obj\Debug\subControls\viewWindow.baml
 C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibRXOpticalBoB\MultiCalibOpticalRXGW040H\obj\Debug\subControls\waitWindow.baml
-C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibRXOpticalBoB\MultiCalibOpticalRXGW040H\obj\Debug\MultiCalibOpticalRXGW040H.g.resources
 C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibRXOpticalBoB\MultiCalibOpticalRXGW040H\obj\Debug\MultiCalibOpticalRXGW040H.Properties.Resources.resources
 C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibRXOpticalBoB\MultiCalibOpticalRXGW040H\obj\Debug\MultiCalibOpticalRXGW040H.csproj.GenerateResource.cache
 C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibRXOpticalBoB\MultiCalibOpticalRXGW040H\obj\Debug\MultiCalibOpticalRXGW040H.csproj.CoreCompileInputs.cache
 C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibRXOpticalBoB\MultiCalibOpticalRXGW040H\obj\Debug\MultiCalibOpticalRXGW040H.csproj.CopyComplete
-C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibRXOpticalBoB\MultiCalibOpticalRXGW040H\obj\Debug\MultiCalibOpticalRXGW040H.exe
-C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibRXOpticalBoB\MultiCalibOpticalRXGW040H\obj\Debug\MultiCalibOpticalRXGW040H.pdb
+C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibRXOpticalBoB\MultiCalibOpticalRXGW040H\bin\Debug\MultiCalibRXOpticalBoB_Ver1.0.0.6.exe.config
+C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibRXOpticalBoB\MultiCalibOpticalRXGW040H\bin\Debug\MultiCalibRXOpticalBoB_Ver1.0.0.6.exe
+C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibRXOpticalBoB\MultiCalibOpticalRXGW040H\bin\Debug\MultiCalibRXOpticalBoB_Ver1.0.0.6.pdb
+C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibRXOpticalBoB\MultiCalibOpticalRXGW040H\obj\Debug\MultiCalibRXOpticalBoB_Ver1.0.0.6_MarkupCompile.cache
+C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibRXOpticalBoB\MultiCalibOpticalRXGW040H\obj\Debug\MultiCalibRXOpticalBoB_Ver1.0.0.6_MarkupCompile.lref
+C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibRXOpticalBoB\MultiCalibOpticalRXGW040H\obj\Debug\MultiCalibRXOpticalBoB_Ver1.0.0.6.g.resources
+C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibRXOpticalBoB\MultiCalibOpticalRXGW040H\obj\Debug\MultiCalibRXOpticalBoB_Ver1.0.0.6.exe
+C:\Users\anhho\source\repos\GitHub\MultiCalibOpticalRXGW040H\MultiCalibRXOpticalBoB\MultiCalibOpticalRXGW040H\obj\Debug\MultiCalibRXOpticalBoB_Ver1.0.0.6.pdb

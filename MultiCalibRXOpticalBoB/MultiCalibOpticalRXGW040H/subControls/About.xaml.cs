@@ -35,6 +35,15 @@ namespace MultiCalibOpticalRXGW040H
                 PERSON = "Hồ Đức Anh"
             });
 
+            listHist.Add(new history() {
+                ID = "7",
+                VERSION = "1.0.0.6",
+                CONTENT = "- Tăng thời gian delay đọc PartemAligned từ 600ms -> 900ms",
+                DATE = "19/07/2018",
+                CHANGETYPE = "Chỉnh sửa",
+                PERSON = "Hồ Đức Anh"
+            });
+
             this.GridAbout.ItemsSource = listHist;
         }
 

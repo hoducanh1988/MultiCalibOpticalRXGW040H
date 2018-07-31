@@ -93,6 +93,11 @@ namespace MultiCalibOpticalRXGW040H {
             this.WindowState = WindowState.Minimized;
         }
 
+        private void lblMax_MouseDown(object sender, MouseButtonEventArgs e) {
+            this.setStartupLocation();
+        }
+
+
         private void MenuItem_Click(object sender, RoutedEventArgs e) {
             MenuItem mi = sender as MenuItem;
             switch (mi.Header) {

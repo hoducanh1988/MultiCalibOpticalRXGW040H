@@ -183,7 +183,7 @@ namespace MultiCalibOpticalRXGW040H.Function
 
                 for (int j = 0; j < 2; j++) {
                     base.WriteLine("echo GPON_BER 6 >/proc/pon_phy/debug");
-                    Thread.Sleep(Delay_modem * 2);
+                    Thread.Sleep(Delay_modem * 3);
                     str = base.Read();
                     _testinfo.SYSTEMLOG += str + "\r\n";
                    
@@ -223,7 +223,7 @@ namespace MultiCalibOpticalRXGW040H.Function
 
                 for (int j = 0; j < 2; j++) {
                     base.WriteLine("echo GPON_BER 6 >/proc/pon_phy/debug");
-                    Thread.Sleep(Delay_modem * 2);
+                    Thread.Sleep(Delay_modem * 3);
                     str = base.Read();
                     _testinfo.SYSTEMLOG += str + "\r\n";
 

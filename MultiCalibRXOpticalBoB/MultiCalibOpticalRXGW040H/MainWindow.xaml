@@ -49,8 +49,8 @@
             <!--App Information-->
             <Grid Grid.Row="0" Margin="5,0,0,0">
                 <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <Label FontSize="12" VerticalAlignment="Center" Foreground="Black" Content=" Phiên bản 1.0.0.5"></Label>
-                    <Label FontSize="12" VerticalAlignment="Center" Foreground="Black" Content=" Ngày tạo 05/07/2018"></Label>
+                    <Label FontSize="12" VerticalAlignment="Center" Foreground="Black" Content=" Phiên bản 1.0.0.6"></Label>
+                    <Label FontSize="12" VerticalAlignment="Center" Foreground="Black" Content=" Ngày tạo 19/07/2018"></Label>
                     <Label FontSize="12" VerticalAlignment="Center" Foreground="Black" Content=" Bản quyền công ty VNPT Technology 2018"></Label>
                 </WrapPanel>
                 <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Right" >
@@ -58,6 +58,13 @@
                         <Border x:Name="bdMin" MouseDown="lblMin_MouseDown" Margin="0,8,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" BorderBrush="White" BorderThickness="2" Width="10">
                         </Border>
                     </Label>
+
+                    <Grid Width="25" Margin="0,0,10,0" ToolTipService.ToolTip="Maximum" MouseDown="lblMax_MouseDown">
+                        <Border Margin="5" Background="White" MouseDown="lblMax_MouseDown">
+                            <Border Margin="3" Background="#B0C4DE" MouseDown="lblMax_MouseDown"/>
+                        </Border>
+                    </Grid>
+                    
                     <Label Padding="9,0,0,0" MouseDown="Label_MouseDown" FontSize="20" Width="30" FontWeight="Bold" Margin="0,-5,5,0"  Foreground="White" Background="Red" ToolTipService.ToolTip="Tắt ứng dụng" Content="X"></Label>
                 </WrapPanel>
             </Grid>

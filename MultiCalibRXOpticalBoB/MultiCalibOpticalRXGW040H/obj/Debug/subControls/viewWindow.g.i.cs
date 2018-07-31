@@ -76,7 +76,7 @@ namespace MultiCalibOpticalRXGW040H {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/MultiCalibOpticalRXGW040H;component/subcontrols/viewwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/MultiCalibRXOpticalBoB_Ver1.0.0.6;component/subcontrols/viewwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\subControls\viewWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
